@@ -65,7 +65,16 @@ html {
 body {
   overflow-x: clip;
   position: relative;
-  /* Millimeter Graph Paper Grid with Soft Pastel Aurora Watercolor Glow */
+  background-color: var(--bg-page);
+}
+
+/* GPU-accelerated smooth background: 0 repaint lag on scroll */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background-image: 
     radial-gradient(ellipse at 15% 10%, rgba(255, 182, 193, 0.18) 0%, transparent 40%),
     radial-gradient(ellipse at 85% 25%, rgba(216, 180, 254, 0.20) 0%, transparent 45%),
@@ -74,7 +83,8 @@ body {
     linear-gradient(to right, rgba(15, 74, 42, 0.04) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(15, 74, 42, 0.04) 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 28px 28px, 28px 28px;
-  background-attachment: fixed;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 img, video {
@@ -418,27 +428,8 @@ html.js-motion .reveal.is-visible {
 
 .hero-copy {
   text-align: center;
-  max-width: 900px;
-  margin: 0 auto 36px;
-}
-
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  color: var(--dps-green);
-  background: var(--dps-light);
-  border: 1px solid rgba(15, 74, 42, 0.15);
-  border-radius: 20px;
-  padding: 5px 16px;
-  margin-bottom: 20px;
-}
-
-.star-spark {
-  color: var(--dps-gold);
+  max-width: 920px;
+  margin: 16px auto 36px;
 }
 
 .hero-title {
@@ -447,7 +438,8 @@ html.js-motion .reveal.is-visible {
   line-height: 1.08;
   letter-spacing: -0.03em;
   color: var(--dps-green);
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  text-wrap: balance;
 }
 
 .hero-title em {
@@ -461,7 +453,8 @@ html.js-motion .reveal.is-visible {
   font-size: clamp(16px, 1.8vw, 20px);
   line-height: 1.6;
   color: var(--text-muted);
-  margin-bottom: 28px;
+  margin-bottom: 32px;
+  text-wrap: pretty;
 }
 
 .hero-actions-row {
@@ -470,7 +463,7 @@ html.js-motion .reveal.is-visible {
   justify-content: center;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .hero-btn-primary {
@@ -865,18 +858,20 @@ html.js-motion .reveal.is-visible {
 }
 
 .section-header h2 {
-  font-size: clamp(30px, 4vw, 52px);
+  font-size: clamp(32px, 4vw, 52px);
   font-weight: 800;
   line-height: 1.15;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   color: var(--dps-green);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  text-wrap: balance;
 }
 
 .section-sub {
   font-size: 16px;
   line-height: 1.65;
   color: var(--text-muted);
+  text-wrap: pretty;
 }
 
 .why {
@@ -2450,4 +2445,279 @@ html.js-motion .reveal.is-visible {
 .codlyn-link:hover {
   color: #059669;
   opacity: 0.85;
+}
+
+/* ==========================================================================
+   Comprehensive Mobile & Tablet Responsiveness Suite (< 768px)
+   Eliminates horizontal overflow, optimizes touch ergonomics & frame rate
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Site Header Mobile */
+  .site-header {
+    height: 60px;
+    padding: 0 16px;
+  }
+  .header-dps-logo {
+    height: 32px;
+  }
+  .school-title {
+    font-size: 13.5px;
+  }
+  .project-subtitle {
+    display: none;
+  }
+  .author-badge {
+    padding: 4px 10px 4px 6px;
+    gap: 6px;
+  }
+  .author-name {
+    font-size: 11.5px;
+  }
+
+  /* Hero Section Mobile */
+  .hero {
+    padding: 24px 16px 40px;
+  }
+  .washi-tape-note {
+    display: none !important;
+  }
+  .hero-doodles-layer {
+    display: none !important;
+  }
+  .hero-title {
+    font-size: clamp(28px, 8vw, 44px);
+    margin-bottom: 14px;
+    line-height: 1.15;
+  }
+  .hero-description {
+    font-size: 15px;
+    line-height: 1.55;
+    margin-bottom: 24px;
+  }
+  .hero-actions-row {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .hero-btn-primary,
+  .hero-btn-secondary {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  .hero-image-caption {
+    padding: 16px 18px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .hero-image-caption h3 {
+    font-size: 18px;
+  }
+  .hero-image-caption p {
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .year-badge {
+    font-size: 18px;
+    padding: 2px 10px;
+  }
+  .hand-sticker {
+    font-size: 14px;
+    padding: 6px 12px;
+    right: 12px;
+    bottom: -10px;
+  }
+
+  /* Section Headers Mobile */
+  .section-pad {
+    padding: 50px 16px;
+  }
+  .section-header {
+    margin-bottom: 28px;
+  }
+  .section-header h2 {
+    font-size: clamp(24px, 6.5vw, 36px);
+    margin-bottom: 10px;
+  }
+  .section-sub {
+    font-size: 14.5px;
+    line-height: 1.55;
+  }
+
+  /* Word by Word Manifesto Mobile */
+  .mis {
+    padding: 50px 16px 36px;
+  }
+  .man {
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    line-height: 1.25;
+  }
+
+  /* Why 2040 Cards Mobile */
+  .why {
+    padding: 40px 16px 50px;
+  }
+  .cd {
+    min-height: auto;
+    padding: 20px 16px;
+    margin-top: 16px;
+    margin-bottom: 24px;
+    top: calc(64px + var(--i) * 12px);
+    gap: 12px;
+  }
+  .cd h3 {
+    font-size: 1.4rem;
+  }
+  .cd p {
+    font-size: 13.5px;
+    line-height: 1.55;
+  }
+  .cd-pill-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .cd-doodle {
+    width: 28px;
+    height: 28px;
+    top: 12px;
+    right: 12px;
+  }
+
+  /* Matter.js Chamber Mobile */
+  .ph {
+    height: auto !important;
+    padding: 40px 16px 50px;
+  }
+  .ph .stick {
+    position: static !important;
+    height: auto !important;
+  }
+  .box {
+    height: 360px;
+    max-width: 100%;
+  }
+  .box .it {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  /* Innovation Blueprints Mobile */
+  .blueprint-stage-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .blueprint-buttons-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 12px;
+  }
+  .bp-pill-btn {
+    padding: 10px 12px;
+    border-radius: 12px;
+  }
+  .bp-pill-meta h4 {
+    font-size: 13.5px;
+  }
+  .bp-pill-meta p {
+    font-size: 11.5px;
+  }
+  .sandbox-blueprint-card {
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  /* Facilities / Before & After Sliders Mobile */
+  .facility-showcase {
+    padding: 20px 16px;
+    border-radius: 20px;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .facility-info h3 {
+    font-size: 20px;
+  }
+  .facility-info p {
+    font-size: 13.5px;
+    margin-bottom: 16px;
+  }
+  .interactive-wipe-slider {
+    height: 250px;
+    touch-action: pan-y;
+  }
+  .handle-grip {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  /* Pinned Sports Track Mobile: Smooth Native Touch-Snap Scroll */
+  .hs {
+    height: auto !important;
+    padding: 40px 0;
+  }
+  .hs .stick {
+    position: static !important;
+    height: auto !important;
+    padding: 0 16px;
+  }
+  .trk {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 10px 16px 20px;
+    width: 100%;
+    transform: none !important;
+    gap: 14px;
+  }
+  .gc {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    width: 260px;
+    height: 340px;
+  }
+
+  /* Scenes Mobile */
+  .scene {
+    height: 140vh;
+  }
+
+  /* Timeline Rail Mobile */
+  .rail {
+    padding-left: 20px;
+  }
+  .ti {
+    grid-template-columns: 55px 1fr;
+    gap: 14px;
+  }
+  .ti b {
+    font-size: 1.3rem;
+  }
+
+  /* Signature Card Mobile */
+  .signature-card {
+    padding: 22px 16px;
+  }
+  .sig-header {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .sig-quote {
+    font-size: 14px;
+  }
+
+  /* Footer Mobile */
+  .site-footer {
+    padding: 40px 16px 24px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
 }

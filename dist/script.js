@@ -1,6 +1,6 @@
 /**
  * Vision 2040 — DPS Mathura Road (Master Hybrid Engine)
- * A Student Academic Proposal & Design System by Manini Sharma (Class 7-C)
+ * A Student Academic Proposal & Design System by Manini Sharma
  * 
  * Fusion Features:
  * 1. Matter.js Gravity Chamber (Feel the Weight of Today ➔ Gravity Inversion ➔ 3D Academic Slate)
@@ -25,104 +25,19 @@
   // ==========================================================================
   // 1. WEB AUDIO SYNTHESIZER
   // ==========================================================================
+  // Ambient Audio permanently OFF
   class AmbientAudio {
     constructor() {
-      this.ctx = null;
-      this.enabled = true;
-      this.initialized = false;
-      this.lastTone = 0;
-      this.PENTA = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33];
+      this.enabled = false;
     }
-
-    init() {
-      if (this.initialized) return;
-      try {
-        const AudioCtx = window.AudioContext || window.webkitAudioContext;
-        if (!AudioCtx) return;
-        this.ctx = new AudioCtx({ latencyHint: 'interactive' });
-        this.master = this.ctx.createGain();
-        this.master.gain.value = 0.12;
-        this.master.connect(this.ctx.destination);
-        this.initialized = true;
-      } catch (_) {}
-    }
-
-    resume() {
-      if (!this.initialized) this.init();
-      if (this.ctx && this.ctx.state === 'suspended') {
-        this.ctx.resume().catch(() => {});
-      }
-    }
-
-    toggle() {
-      this.enabled = !this.enabled;
-      if (this.enabled) this.resume();
-      return this.enabled;
-    }
-
-    chime(noteIdx = 0, volume = 0.08) {
-      if (!this.enabled || !this.ctx || this.ctx.state !== 'running') return;
-      const now = this.ctx.currentTime;
-      if (now - this.lastTone < 0.12) return;
-      this.lastTone = now;
-
-      try {
-        const freq = this.PENTA[Math.abs(noteIdx) % this.PENTA.length];
-        const osc = this.ctx.createOscillator();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-
-        const g = this.ctx.createGain();
-        g.gain.setValueAtTime(0, now);
-        g.gain.linearRampToValueAtTime(volume, now + 0.015);
-        g.gain.exponentialRampToValueAtTime(0.0001, now + 0.55);
-
-        osc.connect(g);
-        g.connect(this.master);
-        osc.start(now);
-        osc.stop(now + 0.55);
-      } catch (_) {}
-    }
-
-    pop() {
-      if (!this.enabled || !this.ctx || this.ctx.state !== 'running') return;
-      try {
-        const now = this.ctx.currentTime;
-        const osc = this.ctx.createOscillator();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(440, now);
-        osc.frequency.exponentialRampToValueAtTime(180, now + 0.08);
-
-        const g = this.ctx.createGain();
-        g.gain.setValueAtTime(0.06, now);
-        g.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-
-        osc.connect(g);
-        g.connect(this.master);
-        osc.start(now);
-        osc.stop(now + 0.08);
-      } catch (_) {}
-    }
+    init() {}
+    resume() {}
+    toggle() { return false; }
+    chime() {}
+    pop() {}
   }
 
   const audio = new AmbientAudio();
-
-  const unlockAudio = () => {
-    audio.resume();
-    window.removeEventListener('scroll', unlockAudio);
-    window.removeEventListener('pointerdown', unlockAudio);
-  };
-  window.addEventListener('scroll', unlockAudio, { passive: true, once: true });
-  window.addEventListener('pointerdown', unlockAudio, { passive: true, once: true });
-
-  const soundBtn = document.querySelector('.sound-toggle-btn');
-  if (soundBtn) {
-    soundBtn.addEventListener('click', () => {
-      const on = audio.toggle();
-      soundBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-      soundBtn.innerHTML = on ? '<span>🔊</span> Sound: ON' : '<span>🔇</span> Sound: MUTE';
-    });
-  }
 
   // ==========================================================================
   // 2. GRAPHITE PENCIL DOODLE CANVAS TRAIL (Interactive Student Margins)
@@ -132,7 +47,8 @@
       this.canvas = document.getElementById('pencil-doodle-canvas');
       if (!this.canvas) return;
       this.ctx = this.canvas.getContext('2d');
-      this.enabled = true;
+      this.enabled = true; // Permanently active
+      this.animating = false;
       this.points = [];
       this.sparkles = [];
       this.lastPos = null;
@@ -140,24 +56,14 @@
 
       this.resize();
       window.addEventListener('resize', () => this.resize(), { passive: true });
-      window.addEventListener('pointermove', (e) => this.onMove(e), { passive: true });
-
-      const toggleBtn = document.getElementById('pencil-toggle-btn');
-      if (toggleBtn) {
-        toggleBtn.addEventListener('click', () => {
-          this.enabled = !this.enabled;
-          toggleBtn.setAttribute('aria-pressed', this.enabled ? 'true' : 'false');
-          toggleBtn.innerHTML = this.enabled ? '<span>✏️</span> Pencil: ON' : '<span>✏️</span> Pencil: OFF';
-          if (!this.enabled) {
-            this.points = [];
-            this.sparkles = [];
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-          }
-        });
-      }
+      
+      // On touch devices, do not generate canvas trails during touch-scrolling
+      window.addEventListener('pointermove', (e) => {
+        if (e.pointerType === 'touch') return;
+        this.onMove(e);
+      }, { passive: true });
 
       this.loop = this.loop.bind(this);
-      requestAnimationFrame(this.loop);
     }
 
     resize() {
@@ -184,13 +90,13 @@
           y1: this.lastPos.y,
           x2: x,
           y2: y,
-          width: Math.max(1.2, Math.min(3.0, 4.0 - dist * 0.05)),
+          width: Math.max(1.2, Math.min(2.8, 3.8 - dist * 0.05)),
           alpha: 0.65,
           life: 1.0,
           color: '#374151'
         });
 
-        if (this.distanceSinceLastSparkle > 75) {
+        if (this.distanceSinceLastSparkle > 85) {
           this.distanceSinceLastSparkle = 0;
           const types = ['star', 'spark', 'atom', 'dot'];
           const type = types[Math.floor(Math.random() * types.length)];
@@ -205,6 +111,11 @@
             type: type,
             color: ['#10B981', '#F59E0B', '#8B5CF6', '#EC4899'][Math.floor(Math.random() * 4)]
           });
+        }
+
+        if (!this.animating) {
+          this.animating = true;
+          requestAnimationFrame(this.loop);
         }
       }
 
@@ -235,76 +146,79 @@
     }
 
     loop() {
-      if (this.enabled && (this.points.length > 0 || this.sparkles.length > 0)) {
-        this.ctx.save();
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.ctx.scale(this.dpr, this.dpr);
+      if (!this.enabled || (this.points.length === 0 && this.sparkles.length === 0)) {
+        if (this.ctx) this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.animating = false;
+        return; // Stops loop completely when idle for 0% CPU usage
+      }
 
-        for (let i = this.points.length - 1; i >= 0; i--) {
-          const p = this.points[i];
-          p.life -= 0.035;
-          if (p.life <= 0) {
-            this.points.splice(i, 1);
-            continue;
-          }
+      this.ctx.save();
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctx.scale(this.dpr, this.dpr);
 
-          this.ctx.save();
-          this.ctx.strokeStyle = p.color;
-          this.ctx.lineWidth = p.width;
-          this.ctx.lineCap = 'round';
-          this.ctx.lineJoin = 'round';
-          this.ctx.globalAlpha = p.alpha * p.life;
-          this.ctx.beginPath();
-          this.ctx.moveTo(p.x1, p.y1);
-          this.ctx.lineTo(p.x2, p.y2);
-          this.ctx.stroke();
-          this.ctx.restore();
+      for (let i = this.points.length - 1; i >= 0; i--) {
+        const p = this.points[i];
+        p.life -= 0.045;
+        if (p.life <= 0) {
+          this.points.splice(i, 1);
+          continue;
         }
 
-        for (let i = this.sparkles.length - 1; i >= 0; i--) {
-          const s = this.sparkles[i];
-          s.life -= 0.025;
-          s.rotation += s.rotSpeed;
-          s.y -= 0.35;
-          if (s.life <= 0) {
-            this.sparkles.splice(i, 1);
-            continue;
-          }
+        this.ctx.save();
+        this.ctx.strokeStyle = p.color;
+        this.ctx.lineWidth = p.width;
+        this.ctx.lineCap = 'round';
+        this.ctx.lineJoin = 'round';
+        this.ctx.globalAlpha = p.alpha * p.life;
+        this.ctx.beginPath();
+        this.ctx.moveTo(p.x1, p.y1);
+        this.ctx.lineTo(p.x2, p.y2);
+        this.ctx.stroke();
+        this.ctx.restore();
+      }
 
-          this.ctx.save();
-          this.ctx.translate(s.x, s.y);
-          this.ctx.rotate(s.rotation);
-          this.ctx.globalAlpha = s.alpha * s.life;
-          this.ctx.strokeStyle = s.color;
-          this.ctx.fillStyle = s.color;
-          this.ctx.lineWidth = 1.4;
+      for (let i = this.sparkles.length - 1; i >= 0; i--) {
+        const s = this.sparkles[i];
+        s.life -= 0.035;
+        s.rotation += s.rotSpeed;
+        s.y -= 0.35;
+        if (s.life <= 0) {
+          this.sparkles.splice(i, 1);
+          continue;
+        }
 
-          if (s.type === 'star') {
-            this.drawStar(this.ctx, 0, 0, 4, s.size, s.size * 0.35);
-            this.ctx.stroke();
-          } else if (s.type === 'spark') {
-            this.ctx.beginPath();
-            this.ctx.moveTo(-s.size, 0);
-            this.ctx.lineTo(s.size, 0);
-            this.ctx.moveTo(0, -s.size);
-            this.ctx.lineTo(0, s.size);
-            this.ctx.stroke();
-          } else if (s.type === 'atom') {
-            this.ctx.beginPath();
-            this.ctx.arc(0, 0, s.size * 0.5, 0, Math.PI * 2);
-            this.ctx.stroke();
-          } else {
-            this.ctx.beginPath();
-            this.ctx.arc(0, 0, 2, 0, Math.PI * 2);
-            this.ctx.fill();
-          }
+        this.ctx.save();
+        this.ctx.translate(s.x, s.y);
+        this.ctx.rotate(s.rotation);
+        this.ctx.globalAlpha = s.alpha * s.life;
+        this.ctx.strokeStyle = s.color;
+        this.ctx.fillStyle = s.color;
+        this.ctx.lineWidth = 1.4;
 
-          this.ctx.restore();
+        if (s.type === 'star') {
+          this.drawStar(this.ctx, 0, 0, 4, s.size, s.size * 0.35);
+          this.ctx.stroke();
+        } else if (s.type === 'spark') {
+          this.ctx.beginPath();
+          this.ctx.moveTo(-s.size, 0);
+          this.ctx.lineTo(s.size, 0);
+          this.ctx.moveTo(0, -s.size);
+          this.ctx.lineTo(0, s.size);
+          this.ctx.stroke();
+        } else if (s.type === 'atom') {
+          this.ctx.beginPath();
+          this.ctx.arc(0, 0, s.size * 0.5, 0, Math.PI * 2);
+          this.ctx.stroke();
+        } else {
+          this.ctx.beginPath();
+          this.ctx.arc(0, 0, 2, 0, Math.PI * 2);
+          this.ctx.fill();
         }
 
         this.ctx.restore();
       }
 
+      this.ctx.restore();
       requestAnimationFrame(this.loop);
     }
   }
@@ -381,23 +295,30 @@
     }
 
     let isVisible = false;
+    let animId = null;
+
+    function loop() {
+      if (!isVisible) {
+        animId = null;
+        return;
+      }
+      eng.gravity.y = MatterGravityY;
+      Engine.update(eng, 1000 / 60);
+      its.forEach((o) => {
+        if (MatterGravityY > 0 && o.b.position.y < -250) {
+          Body.setPosition(o.b, { x: W0() * Math.random(), y: -90 });
+        }
+        place(o);
+      });
+      animId = requestAnimationFrame(loop);
+    }
+
     new IntersectionObserver((entries) => {
       isVisible = entries[0].isIntersecting;
-    }).observe(box);
-
-    (function loop() {
-      if (isVisible) {
-        eng.gravity.y = MatterGravityY;
-        Engine.update(eng, 1000 / 60);
-        its.forEach((o) => {
-          if (MatterGravityY > 0 && o.b.position.y < -250) {
-            Body.setPosition(o.b, { x: W0() * Math.random(), y: -90 });
-          }
-          place(o);
-        });
+      if (isVisible && !animId) {
+        animId = requestAnimationFrame(loop);
       }
-      requestAnimationFrame(loop);
-    })();
+    }, { threshold: 0.05 }).observe(box);
   }
 
   // ==========================================================================
@@ -609,7 +530,6 @@
     const dds = [...document.querySelectorAll('.dd:not(.t)')];
     const words = [...document.querySelectorAll('#man span')];
     const tis = [...document.querySelectorAll('.ti')];
-    const strip = $('#strip');
     const trk = $('#trk');
     const hs = $('#hs');
     const ph = $('#ph');
@@ -619,13 +539,41 @@
     const rail = $('.rail');
     const progressBar = document.querySelector('.reading-progress span');
 
+    // High performance IntersectionObservers replace heavy scroll queries
+    const doodleObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.style.setProperty('--p', 1);
+      });
+    }, { threshold: 0.15 });
+    dds.forEach(d => doodleObserver.observe(d));
+
+    const timelineObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('on');
+      });
+    }, { threshold: 0.2 });
+    tis.forEach(t => timelineObserver.observe(t));
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        const v = e.target.querySelector('video');
+        if (!v) return;
+        if (e.isIntersecting) {
+          if (v.paused) v.play().catch(() => {});
+        } else {
+          if (!v.paused) v.pause();
+        }
+      });
+    }, { threshold: 0.05 });
+    scenes.forEach(el => videoObserver.observe(el));
+
     let queued = false;
     let onN = -1;
 
     function onScrollUpdate() {
       queued = false;
       const vh = window.innerHeight;
-      const W = document.documentElement.clientWidth;
+      const W = window.innerWidth;
       const y = window.scrollY;
 
       // Top reading progress bar
@@ -634,37 +582,33 @@
         progressBar.style.transform = `scaleX(${maxScroll > 0 ? y / maxScroll : 0})`;
       }
 
-      // Marquee strip translation: now pure infinite GPU marquee in CSS
-
       // Manifesto word-by-word reveal
       if (man && words.length > 0) {
         const mr = man.getBoundingClientRect();
-        const n = Math.round(clamp((vh * 0.85 - mr.top) / (vh * 0.4 + mr.height)) * words.length * 1.1);
-        if (n !== onN) {
-          onN = n;
-          words.forEach((w, i) => w.classList.toggle('on', i < n));
+        if (mr.top < vh && mr.bottom > 0) {
+          const n = Math.round(clamp((vh * 0.85 - mr.top) / (vh * 0.4 + mr.height)) * words.length * 1.1);
+          if (n !== onN) {
+            onN = n;
+            words.forEach((w, i) => w.classList.toggle('on', i < n));
+          }
         }
       }
 
       // Matter.js Gravity inversion in #ph box
       if (ph && box) {
         const pr = ph.getBoundingClientRect();
-        const pp = clamp(-pr.top / (pr.height - vh));
-        MatterGravityY = 1 - clamp((pp - 0.4) / 0.12) * 1.6;
-        box.style.setProperty('--f', clamp((pp - 0.52) / 0.18).toFixed(3));
-        box.classList.toggle('f', pp > 0.5);
+        if (pr.top < vh && pr.bottom > 0) {
+          const pp = clamp(-pr.top / (pr.height - vh));
+          MatterGravityY = 1 - clamp((pp - 0.4) / 0.12) * 1.6;
+          box.style.setProperty('--f', clamp((pp - 0.52) / 0.18).toFixed(3));
+          box.classList.toggle('f', pp > 0.5);
+        }
       }
 
-      // Year-Scrubbing Scan Scenes
+      // Year-Scrubbing Scan Scenes (only active in view)
       scenes.forEach((el) => {
         const r = el.getBoundingClientRect();
-        const v = el.querySelector('video');
-        if (v) {
-          const on = r.bottom > 0 && r.top < vh;
-          if (on && v.paused) v.play().catch(() => {});
-          else if (!on && !v.paused) v.pause();
-        }
-        if (r.bottom < -vh || r.top > 2 * vh) return;
+        if (r.bottom < 0 || r.top > vh) return;
         const w = clamp((clamp(-r.top / (r.height - vh)) - 0.1) / 0.6);
         el.style.setProperty('--w', w.toFixed(3));
         el.style.setProperty('--s', w > 0.01 && w < 0.99 ? 1 : 0);
@@ -674,25 +618,21 @@
         }
       });
 
-      // Hand-drawn SVG doodle path stroke length on scroll
-      dds.forEach((d) => {
-        d.style.setProperty('--p', clamp((vh * 0.92 - d.getBoundingClientRect().top) / (vh * 0.3)).toFixed(3));
-      });
-
-      // Horizontal Sports & Health Track
-      if (hs && trk) {
+      // Horizontal Sports Track (desktop only, mobile uses native touch scroll)
+      if (hs && trk && W > 768) {
         const hr = hs.getBoundingClientRect();
-        const hp = clamp(-hr.top / (hr.height - vh));
-        trk.style.transform = `translate3d(${-hp * Math.max(0, trk.scrollWidth - W + 32)}px, 0, 0)`;
+        if (hr.top < vh && hr.bottom > 0) {
+          const hp = clamp(-hr.top / (hr.height - vh));
+          trk.style.transform = `translate3d(${-hp * Math.max(0, trk.scrollWidth - W + 32)}px, 0, 0)`;
+        }
       }
 
-      // National Mission Timeline Rail
+      // National Mission Timeline Rail progress
       if (rail && rl) {
         const tr = rail.getBoundingClientRect();
-        rl.style.setProperty('--p', clamp((vh * 0.6 - tr.top) / tr.height).toFixed(3));
-        tis.forEach((t) => {
-          t.classList.toggle('on', t.getBoundingClientRect().top < vh * 0.62);
-        });
+        if (tr.top < vh && tr.bottom > 0) {
+          rl.style.setProperty('--p', clamp((vh * 0.6 - tr.top) / tr.height).toFixed(3));
+        }
       }
     }
 
@@ -730,7 +670,6 @@
         const targetPanel = document.getElementById(targetId);
         if (targetPanel) {
           targetPanel.classList.add('active');
-          audio.chime(2, 0.09);
         }
       });
     });
@@ -743,7 +682,7 @@
       const handle = slider.querySelector('.wipe-handle');
       if (!afterWrap || !handle) return;
 
-      let lastPct = 50;
+      let isDown = false;
 
       const setPosition = (clientX) => {
         const rect = slider.getBoundingClientRect();
@@ -752,22 +691,21 @@
 
         afterWrap.style.clipPath = `inset(0 0 0 ${pct}%)`;
         handle.style.left = `${pct}%`;
-
-        // Subtle chime when passing midpoint
-        if ((lastPct < 50 && pct >= 50) || (lastPct > 50 && pct <= 50)) {
-          audio.chime(4, 0.08);
-        }
-        lastPct = pct;
       };
 
       slider.addEventListener('pointerdown', (e) => {
+        isDown = true;
         if (slider.setPointerCapture) {
           try { slider.setPointerCapture(e.pointerId); } catch (_) {}
         }
         setPosition(e.clientX);
       });
 
+      window.addEventListener('pointerup', () => { isDown = false; }, { passive: true });
+      window.addEventListener('pointercancel', () => { isDown = false; }, { passive: true });
+
       slider.addEventListener('pointermove', (e) => {
+        if (e.pointerType === 'touch' && !isDown) return;
         setPosition(e.clientX);
       });
     });
