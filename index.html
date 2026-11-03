@@ -1,0 +1,916 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbfbf9">
+<meta name="description" content="Vision 2040: DPS Mathura Road as a Smart School. A student proposal and design initiative by Manini Sharma (Class 7), linked to India's Viksit Bharat 2047 and ISRO 2040 missions.">
+<title>Vision 2040 — DPS Mathura Road | A Student Proposal by Manini Sharma</title>
+
+<!-- Favicon -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+<!-- Google Fonts: Outfit + Manrope + Instrument Serif + Caveat -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Core Stylesheets & Scripts -->
+<link rel="stylesheet" href="styles.css">
+<script src="matter.min.js"></script>
+<script src="script.js" defer></script>
+</head>
+<body>
+
+<!-- Top Reading Progress Indicator -->
+<div class="reading-progress" aria-hidden="true"><span></span></div>
+
+<!-- Full-Screen Interactive Pencil Doodle Canvas (Follows Cursor with Graphite Sketches) -->
+<canvas id="pencil-doodle-canvas" aria-hidden="true"></canvas>
+
+<!-- Apple-Grade Frosted Glass Site Header -->
+<header class="site-header">
+  <div class="header-left">
+    <a href="#hero" class="wordmark" aria-label="DPS Mathura Road Home">
+      <img class="header-dps-logo" src="assets/dps-crest-shield.png" alt="DPS Mathura Road Official Crest">
+      <div class="brand-titles">
+        <span class="school-title">DPS Mathura Road</span>
+        <span class="project-subtitle">VISION 2040 · A STUDENT INITIATIVE</span>
+      </div>
+    </a>
+  </div>
+  
+  <div class="header-center">
+    <span class="live-status-pill">
+      <span class="status-dot"></span> SMART SCHOOL 2040 MISSION
+    </span>
+    <button id="pencil-toggle-btn" class="header-btn" aria-label="Toggle graphite pencil doodle trail" aria-pressed="true">
+      <span>✏️</span> Pencil: ON
+    </button>
+    <button class="sound-toggle-btn header-btn" aria-label="Toggle synthesized sound effects" aria-pressed="true">
+      <span>🔊</span> Sound: ON
+    </button>
+  </div>
+  
+  <div class="header-right">
+    <div class="author-badge">
+      <span class="author-avatar">👧🏻</span>
+      <div class="author-text">
+        <span class="author-name"><strong>Manini Sharma</strong></span>
+        <span class="author-class">Class 7-C · New Delhi</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- =========================================================================
+       01 HERO SECTION: THE 2040 MISSION OVERVIEW
+       ========================================================================= -->
+  <section id="hero" class="hero" data-chapter="The Vision">
+    <!-- Floating Hand-Drawn Margin Doodles -->
+    <div class="hero-doodles-layer" aria-hidden="true">
+      <svg class="doodle-item doodle-star-1" width="36" height="36" viewBox="0 0 40 40" fill="none">
+        <path d="M20 2 C20 12 28 20 38 20 C28 20 20 28 20 38 C20 28 12 20 2 20 C12 20 20 12 20 2 Z" fill="#FFD700" stroke="#F59E0B" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+      <svg class="doodle-item doodle-planet" width="60" height="42" viewBox="0 0 80 50" fill="none">
+        <ellipse cx="40" cy="25" rx="17" ry="17" fill="#8B5CF6" fill-opacity="0.85" stroke="#6D28D9" stroke-width="2"/>
+        <path d="M10 25 C10 16 70 16 70 25 C70 34 10 34 10 25 Z" stroke="#F59E0B" stroke-width="2.5" fill="none"/>
+      </svg>
+      <svg class="doodle-item doodle-beaker" width="44" height="50" viewBox="0 0 50 60" fill="none">
+        <path d="M20 10 V22 L10 50 H40 L30 22 V10" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="16" y1="10" x2="34" y2="10" stroke="#10B981" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="22" cy="36" r="2.5" fill="#10B981"/>
+        <circle cx="28" cy="30" r="1.8" fill="#10B981"/>
+      </svg>
+    </div>
+
+    <!-- Student Washi Tape Sticky Notes -->
+    <div class="washi-tape-note washi-note-left">
+      <span>🎒 Zero 12kg Backpacks in 2040!</span>
+    </div>
+    <div class="washi-tape-note washi-note-right">
+      <span>🍃 Delhi AQI < 20 Bio-Dome!</span>
+    </div>
+
+    <div class="hero-copy">
+      <div class="hero-eyebrow reveal">
+        <span class="star-spark">✨</span>
+        <span>DELHI PUBLIC SCHOOL · MATHURA ROAD · VISION 2040</span>
+        <span class="star-spark">✨</span>
+      </div>
+      
+      <h1 class="hero-title reveal">
+        Vision <em id="h40">2040</em>:<br>
+        Less heavy bags. More heavy <span class="highlighter-text">brain power.</span>
+      </h1>
+      
+      <p class="hero-description reveal">
+        What if DPS Mathura Road were reimagined for the India of 2040?<br>
+        An intelligent learning ecosystem built on <strong>bagless AR slates, solar clean-air bio-domes, real ISRO lunar telemetry, and teachers freed to truly mentor us.</strong>
+      </p>
+
+      <div class="hero-actions-row reveal">
+        <a href="#why-2040" class="hero-btn-primary">
+          <span>Read The Mission Manifesto</span>
+          <span class="btn-arrow">↓</span>
+        </a>
+        <a href="#ph" class="hero-btn-secondary">
+          <span>🎒 Feel The Weight of Today</span>
+        </a>
+        <a href="#physics-sandbox" class="hero-btn-secondary">
+          <span>⚛️ 2040 Physics Sandbox</span>
+        </a>
+      </div>
+
+      <div class="hero-scroll-prompt reveal">
+        <span class="mouse-icon"><i></i></span>
+        <span>Scroll to travel to 2040 · <strong>Move mouse to sketch pencil notes</strong></span>
+      </div>
+    </div>
+
+    <!-- Hero Campus Video Showcase -->
+    <div class="hero-scene reveal">
+      <div class="hero-image-wrap">
+        <video class="hero-video" autoplay loop muted playsinline preload="metadata">
+          <source src="assets/video/campus.mp4" type="video/mp4">
+        </video>
+        <div class="hero-glass-tag">
+          <span class="tag-icon">✦</span> THE REIMAGINED CAMPUS · 2040 ARCHITECTURE
+        </div>
+        <div class="hero-image-caption">
+          <div class="caption-text">
+            <h3>Still our proud DPS Mathura Road.</h3>
+            <p>Protected from Delhi smog by solar hyper-canopies, geothermal cooling, and boundless student ambition.</p>
+          </div>
+          <div class="year-badge">2040</div>
+        </div>
+      </div>
+      <div class="hand-sticker sticker-hero">
+        <span>the future looks<br><em>so good on us</em> 💖</span>
+        <span class="sticker-arrow">↗</span>
+      </div>
+    </div>
+
+    <!-- Horizontal Continuous Activity Marquee Strip -->
+    <div class="strip-wrap reveal" aria-label="School activities preview strip">
+      <div class="strip" id="strip">
+        <i style="background-image: url('assets/photos/swimming.jpg');" title="Swimming Pool"></i>
+        <i style="background-image: url('assets/photos/dance.jpg');" title="Dance & Arts"></i>
+        <i style="background-image: url('assets/photos/gym.jpg');" title="Fitness Arena"></i>
+        <i style="background-image: url('assets/photos/tennis.jpg');" title="Tennis Courts"></i>
+        <i style="background-image: url('assets/photos/chess.jpg');" title="Chess Academy"></i>
+        <i style="background-image: url('assets/photos/basketball.jpg');" title="Basketball Arena"></i>
+        <i style="background-image: url('assets/photos/volleyball.jpg');" title="Volleyball Court"></i>
+        <i style="background-image: url('assets/photos/shooting.jpg');" title="Shooting Range"></i>
+        <i style="background-image: url('assets/photos/tabletennis.jpg');" title="Table Tennis"></i>
+        <i style="background-image: url('assets/photos/cricket.jpg');" title="Cricket Oval & Electric Bus Bay"></i>
+      </div>
+    </div>
+
+    <!-- 4 High-Impact Strategic Numbers -->
+    <div class="campus-pills-bar reveal">
+      <div class="pill-item">
+        <span class="pill-num">0.0 kg</span>
+        <div><strong>Zero Backpack Load</strong><p>Single featherweight AR Slate replaces all books</p></div>
+      </div>
+      <div class="pill-divider"></div>
+      <div class="pill-item">
+        <span class="pill-num">< 20 AQI</span>
+        <div><strong>Delhi Clean-Air Dome</strong><p>H13 HEPA positive pressure throughout campus</p></div>
+      </div>
+      <div class="pill-divider"></div>
+      <div class="pill-item">
+        <span class="pill-num">140%</span>
+        <div><strong>Solar Self-Sufficiency</strong><p>Bifacial canopies power labs & export green power</p></div>
+      </div>
+      <div class="pill-divider"></div>
+      <div class="pill-item">
+        <span class="pill-num">1 : 1</span>
+        <div><strong>AI Mentor Co-Pilot</strong><p>Personalized pacing; zero rote memorization stress</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       02 THE MANIFESTO (WORD-BY-WORD SCROLL REVEAL)
+       ========================================================================= -->
+  <section class="mis">
+    <p class="hand">The 2040 Mission</p>
+    <p class="man" id="man">
+      <!-- Populated dynamically by script.js with illuminated words -->
+    </p>
+  </section>
+
+  <!-- =========================================================================
+       03 THE CORE MISSION: WHY DO WE NEED THIS BY 2040?
+       ========================================================================= -->
+  <section id="why-2040" class="why">
+    <div class="section-header reveal">
+      <div class="section-tag-row">
+        <span class="badge-tag">THE NATIONAL & HUMAN IMPERATIVE</span>
+        <span class="teacher-spark-badge">VIKSIT BHARAT 2047 · ISRO 2040 · UN SDG 4</span>
+      </div>
+      <h2 id="why">Why 2040?</h2>
+      <p class="sub">Four urgent reasons this transformation cannot wait.</p>
+    </div>
+
+    <!-- 4 Sticky Stacked Cards -->
+    <div class="why-stack" id="cards">
+      <article class="cd" style="--i:0; --c:#0e7c4a;">
+        <div>
+          <span class="badge-tag">REASON 01</span>
+          <h3>The students are the 2040 workforce</h3>
+        </div>
+        <div>
+          <p>A Class 6 or 7 student at DPS Mathura Road today will be in their mid-20s in 2040. What we learn right now decides whether India's scientific, economic, and diplomatic plans are carried out by people who are truly ready for them.</p>
+        </div>
+      </article>
+
+      <article class="cd" style="--i:1; --c:#2554e8;">
+        <div>
+          <span class="badge-tag">REASON 02</span>
+          <h3>India has set its own deadlines</h3>
+        </div>
+        <div>
+          <p>Universal quality schooling by 2030 (NEP 2020), Bharatiya Antariksh Station by 2035, an Indian astronaut on the Moon by 2040, and a developed nation by 2047 (Viksit Bharat). A school that stays stuck in the 1990s becomes a national bottleneck.</p>
+        </div>
+      </article>
+
+      <article class="cd" style="--i:2; --c:#c77700;">
+        <div>
+          <span class="badge-tag">REASON 03</span>
+          <h3>Learning itself is changing forever</h3>
+        </div>
+        <div>
+          <p>Generative AI will automate routine fact recall and basic code. Schools must teach students how to question, synthesize, and build original things—freeing our brilliant teachers to mentor hearts instead of grading paper.</p>
+        </div>
+      </article>
+
+      <article class="cd" style="--i:3; --c:#5b3fb8;">
+        <div>
+          <span class="badge-tag">REASON 04</span>
+          <h3>The campus must carry less</h3>
+        </div>
+        <div>
+          <p>12kg backpacks, paper deforestation, and manual administrative routines cost health, time, and money. A net-zero India by 2070 begins with schools that prove zero-waste, solar-first living is possible today.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Interactive Mission Matrix Tabs -->
+    <div class="matrix-box reveal" style="margin-top: 48px;">
+      <div class="matrix-tabs-header">
+        <span class="matrix-title">EXPLORE THE 4 MISSION STRATEGIES:</span>
+        <div class="matrix-nav">
+          <button class="matrix-tab-btn active" data-target="tab-pedagogy">🎒 Bagless Pedagogy</button>
+          <button class="matrix-tab-btn" data-target="tab-climate">🍃 Clean-Air Campus</button>
+          <button class="matrix-tab-btn" data-target="tab-frontier">🤖 Frontier Labs</button>
+          <button class="matrix-tab-btn" data-target="tab-teachers">👩🏻‍🏫 Teacher Freedom</button>
+        </div>
+      </div>
+
+      <div class="matrix-panels">
+        <div id="tab-pedagogy" class="matrix-tab-panel active">
+          <div class="tab-panel-grid">
+            <div class="tab-panel-info">
+              <h4>From Factory-Era Rows to Multi-Touch Collaboration</h4>
+              <p>In 2040, the traditional wooden bench facing a blackboard is replaced with modular, circular AR tables. Instead of copying notes, students interact with 3D models together—testing physics equations or examining human anatomy in real-time holographic view.</p>
+              <ul class="tab-specs">
+                <li><strong>Physical Load:</strong> Exactly 0.0 kg (Slate snaps magnetically onto desks).</li>
+                <li><strong>Personalization:</strong> AI explains difficult math in visual, auditory, or narrative metaphors.</li>
+                <li><strong>Evaluation:</strong> Continuous real-time understanding metrics, not high-stress cram exams.</li>
+              </ul>
+            </div>
+            <div class="tab-panel-stat-card">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Paperless Curriculum</span>
+              <p>Zero paper deforestation. Zero missed handouts. Instant cloud synchronization for every student.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-climate" class="matrix-tab-panel">
+          <div class="tab-panel-grid">
+            <div class="tab-panel-info">
+              <h4>A Self-Regenerating Micro-Climate in Central Delhi</h4>
+              <p>Located near Mathura Road's busy traffic corridor, DPS can lead Delhi by becoming a net-positive ecological sanctuary. Using biophilic passive cooling, rainwater percolation trenches, and vertical bio-walls, the school purifies millions of cubic meters of air daily.</p>
+              <ul class="tab-specs">
+                <li><strong>Air Filtration:</strong> 3-stage medical-grade H13 HEPA with UV-C air sterilizers.</li>
+                <li><strong>Thermal Comfort:</strong> Shaded courtyards drop heat by 8°C without energy-heavy ACs.</li>
+                <li><strong>Water Security:</strong> 100% campus rainwater harvesting recharging the local aquifer.</li>
+              </ul>
+            </div>
+            <div class="tab-panel-stat-card">
+              <span class="stat-number">0</span>
+              <span class="stat-label">Smog Shutdown Days</span>
+              <p>Students learn continuously in clean, oxygen-rich environments while outside air remains dangerous.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-frontier" class="matrix-tab-panel">
+          <div class="tab-panel-grid">
+            <div class="tab-panel-info">
+              <h4>Hands-On Space Telemetry & Bio-Engineering</h4>
+              <p>Tomorrow’s Indian scientists shouldn’t wait until their Master’s degree to touch advanced tools. At DPS 2040, Atal Tinkering Labs evolve into full 6-axis robotics cells, CRISPR bio-simulators, and direct radio tracking feeds from ISRO missions.</p>
+              <ul class="tab-specs">
+                <li><strong>Robotics:</strong> ROS 2 simulation + physical 6-axis robotic arm calibration.</li>
+                <li><strong>Biology:</strong> Virtual molecular synthesis and synthetic genetics modeling.</li>
+                <li><strong>Space:</strong> Real-time orbital mechanics using live satellite sensor data.</li>
+              </ul>
+            </div>
+            <div class="tab-panel-stat-card">
+              <span class="stat-number">6-Axis</span>
+              <span class="stat-label">Industrial Robot Arms</span>
+              <p>Teaching high-precision automation and spatial programming directly to 8th–12th graders.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="tab-teachers" class="matrix-tab-panel">
+          <div class="tab-panel-grid">
+            <div class="tab-panel-info">
+              <h4>Liberating Teachers to Do What Humans Do Best</h4>
+              <p>We love our teachers: Richa Ma’am, Anuradha Ma’am, Deepti Ma’am, Usha Ma’am, Prableen Ma’am. A smart school never replaces them. By automating attendance, grading, and scheduling, AI gives our teachers 3 extra hours every day to listen, mentor, and inspire.</p>
+              <ul class="tab-specs">
+                <li><strong>Zero Admin Drudgery:</strong> Grading and scheduling handled automatically.</li>
+                <li><strong>Empathetic Mentorship:</strong> Teachers focus on building character, confidence, and values.</li>
+                <li><strong>Customized Support:</strong> Teacher dashboards alert when a student is stressed or struggling emotionally.</li>
+              </ul>
+            </div>
+            <div class="tab-panel-stat-card">
+              <span class="stat-number">3.5 hrs</span>
+              <span class="stat-label">Daily Time Saved Per Teacher</span>
+              <p>Reinvested into one-on-one student discussions, science clubs, and creative debate coaching.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       04 THE MATTER.JS GRAVITY CHAMBER: FEEL THE WEIGHT OF TODAY
+       ========================================================================= -->
+  <section class="ph" id="ph" data-chapter="The Weight">
+    <div class="stick">
+      <div class="hh">
+        <h2 id="phh">Feel the weight of today</h2>
+        <p>School still runs on things that weigh, pile up, and wear students down. Try dragging the clutter below with your mouse. Now keep scrolling and watch what happens when gravity inverts in 2040!</p>
+      </div>
+      
+      <div class="box" id="box">
+        <!-- Matter.js Physics Items populate here -->
+        <div class="slate">
+          <i></i><i></i><i></i>
+          <b>One Academic Slate · 0.0 kg</b>
+        </div>
+        <p class="cap hand">
+          <span class="a">Today: it all piles up. Try dragging it!</span>
+          <span class="b">2040: everything above, in one secure, featherweight device.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       05 INTERACTIVE 2040 CONCEPT PHYSICS SANDBOX
+       ========================================================================= -->
+  <section id="physics-sandbox" class="sandbox-section section-pad" data-chapter="Physics Sandbox">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-tag-row">
+          <span class="badge-tag">INTERACTIVE GRAVITY PLAYGROUND</span>
+          <span class="teacher-spark-badge">TOUCH · DRAG · BOUNCE · EXPLORE</span>
+        </div>
+        <h2>The 8 Gravity Pillars of <span class="serif green">Vision 2040</span></h2>
+        <p class="section-sub">
+          Drag and fling the concept orbs around the physics sandbox! Watch them bounce and collide. Click or hover any sphere to inspect its technical blueprint, the "Why We Need It" rationale, and national alignment.
+        </p>
+      </div>
+
+      <div class="sandbox-stage-grid reveal">
+        <div class="sandbox-canvas-card">
+          <div class="sandbox-toolbar">
+            <div class="toolbar-left">
+              <span class="toolbar-dot green"></span>
+              <span class="toolbar-title">2040 MISSION PHYSICS ENGINE</span>
+            </div>
+            <div class="toolbar-actions">
+              <button id="sandbox-btn-shake" class="sandbox-action-btn">
+                <span>💥</span> Shake Sandbox
+              </button>
+              <button id="sandbox-btn-zerog" class="sandbox-action-btn">
+                <span>🌌</span> Zero-G: OFF
+              </button>
+            </div>
+          </div>
+          
+          <div class="canvas-wrap">
+            <canvas id="physics-sandbox-canvas"></canvas>
+            <div class="canvas-hint-overlay">
+              <span>✦ Grab & throw any orb with your mouse · Click to inspect blueprint ✦</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sandbox-intel-column">
+          <div id="sandbox-mission-card" class="mission-card">
+            <div class="mission-card-header" style="border-left: 4px solid #10B981;">
+              <span class="mission-card-icon">⚛️</span>
+              <div>
+                <h4 class="mission-card-title">Quantum Bio Lab</h4>
+                <span class="mission-card-pill" style="color: #10B981; background: #E6F4EA;">Viksit Bharat 2047 Bio-Mission</span>
+              </div>
+            </div>
+            
+            <div class="mission-card-body">
+              <div class="mission-intel-row">
+                <span class="intel-label">❌ TODAY'S BOTTLENECK</span>
+                <p class="intel-text">Textbook diagrams of cells are static and outdated by 10 years.</p>
+              </div>
+              
+              <div class="mission-intel-row">
+                <span class="intel-label">✨ 2040 SOLUTION</span>
+                <p class="intel-text"><strong>CRISPR molecular simulations & 8K digital electron microscopy.</strong></p>
+              </div>
+              
+              <div class="mission-intel-row">
+                <span class="intel-label">🎯 WHY WE NEED THIS BY 2040</span>
+                <p class="intel-text">By 2040, India’s bio-economy will require real gene sequencing skills in school, not cookbook recipes with test tubes.</p>
+              </div>
+              
+              <div class="mission-intel-footer">
+                <span class="intel-teacher">👩🏻‍🏫 Spark: <strong>Deepti Ma’am & Prableen Ma’am</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       06 YEAR-SCRUBBING SCAN BEAM TRANSFORMATIONS (TODAY ➔ 2040)
+       ========================================================================= -->
+  <div id="scenes">
+    <!-- Scene 1: Classroom -->
+    <section class="scene v1" style="--a:#0e7c4a;">
+      <div class="stick">
+        <div class="head">
+          <h2><span>The bagless, paperless classroom</span></h2>
+          <p class="hand">Inspired by Richa Ma'am and Deepti Ma'am</p>
+        </div>
+        <div class="frame" role="img" aria-label="DPS Mathura Road Classroom today vs 2040">
+          <div class="base" style="--img:url('assets/photos/classroom.jpg')"></div>
+          <div class="fut">
+            <i class="grid"></i>
+            <span class="co" style="left:10%; top:28%;"><i></i><em>Holographic board replaces static blackboard</em></span>
+            <span class="co" style="left:35%; top:56%;"><i></i><em>AI assistant detects who is struggling</em></span>
+            <span class="co l" style="left:65%; top:72%;"><i></i><em>Single Slate on desk · 0kg bag load</em></span>
+            <span class="co l" style="left:88%; top:52%;"><i></i><em>Instant digital test assessment</em></span>
+          </div>
+          <i class="scan"></i>
+          <span class="tg td">Today (2026)</span>
+          <span class="tg tf">2040</span>
+          <span class="yr">2026</span>
+        </div>
+        <div class="copy">
+          <div class="td"><b>Today</b>Wood desks, 12kg paper textbooks, and static blackboards.</div>
+          <div><b>In 2040</b>Every learner uses a secure Academic Slate that opens only approved learning tools. Feedback is continuous and personal.</div>
+          <div><b>Why we need it</b>Eliminating heavy bags protects student health; real-time understanding lets teachers fix doubts immediately.<small>Links to: NEP 2020 · Digital India · UN SDG 4</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 2: Science Lab -->
+    <section class="scene v3" style="--a:#2554e8;">
+      <div class="stick">
+        <div class="head">
+          <h2><span>Science labs that think with you</span></h2>
+          <p class="hand">Inspired by Anuradha Ma'am and Prableen Ma'am</p>
+        </div>
+        <div class="frame" role="img" aria-label="Science lab today vs 2040">
+          <div class="base" style="--img:url('assets/photos/science.jpg')">
+            <video muted loop playsinline preload="metadata" src="assets/video/science.mp4"></video>
+          </div>
+          <div class="fut">
+            <i class="grid"></i>
+            <span class="co" style="left:14%; top:48%;"><i></i><em>Automated microscopes stream 8K cellular feeds</em></span>
+            <span class="co" style="left:48%; top:36%;"><i></i><em>AI tutor flags chemical reaction errors early</em></span>
+            <span class="co l" style="left:60%; top:78%;"><i></i><em>Digital twin runs zero-hazard simulations first</em></span>
+            <span class="co l" style="left:82%; top:42%;"><i></i><em>Smart safety spectacles with AR readouts</em></span>
+          </div>
+          <i class="scan"></i>
+          <span class="tg td">Today (2026)</span>
+          <span class="tg tf">2040</span>
+          <span class="yr">2026</span>
+        </div>
+        <div class="copy">
+          <div class="td"><b>Today</b>Manual optical microscopes, toxic reagent hazards, one pace for everyone.</div>
+          <div><b>In 2040</b>Automated 8K electron microscopes stream molecular views directly to slates. AI tutors adjust pace and smart glasses ensure zero accidents.</div>
+          <div><b>Why we need it</b>India needs semiconductor, quantum, and biotech researchers. High schoolers must practice real gene modeling before university.<small>Links to: National Quantum Mission · Make in India · SDG 9</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 3: Innovation Lab / Tinkering -->
+    <section class="scene v2" style="--a:#c77700;">
+      <div class="stick">
+        <div class="head">
+          <h2><span>Innovation lab with an AI beside you</span></h2>
+          <p class="hand">Tinkering, coding, and autonomous robotics</p>
+        </div>
+        <div class="frame" role="img" aria-label="Innovation and ATL lab today vs 2040">
+          <div class="base" style="--img:url('assets/photos/tinker.jpg')"></div>
+          <div class="fut">
+            <i class="grid"></i>
+            <span class="co" style="left:20%; top:45%;"><i></i><em>6-axis robot arms and 3D biopolymer printers</em></span>
+            <span class="co" style="left:42%; top:68%;"><i></i><em>Modular benches rearrange for team projects</em></span>
+            <span class="co l" style="left:78%; top:38%;"><i></i><em>AI code copilot reviews bugs in real-time</em></span>
+            <span class="co l" style="left:60%; top:18%;"><i></i><em>Task-following smart task lighting</em></span>
+          </div>
+          <i class="scan"></i>
+          <span class="tg td">Today (2026)</span>
+          <span class="tg tf">2040</span>
+          <span class="yr">2026</span>
+        </div>
+        <div class="copy">
+          <div class="td"><b>Today</b>Fixed computer benches, basic typing, shared hardware.</div>
+          <div><b>In 2040</b>Open workcells for articulated robot arms, digital twin CAD testing, and collaborative engineering pods.</div>
+          <div><b>Why we need it</b>2040 careers will reward people who can invent, debug, and orchestrate systems, not just memorize syntax.<small>Links to: Atal Innovation Mission · Skill India · SDG 9</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scene 4: Library Commons -->
+    <section class="scene v4" style="--a:#5b3fb8;">
+      <div class="stick">
+        <div class="head">
+          <h2><span>A library that becomes a knowledge commons</span></h2>
+          <p class="hand">The intellectual heart of the campus</p>
+        </div>
+        <div class="frame" role="img" aria-label="Library today vs 2040">
+          <div class="base" style="--img:url('assets/photos/library.jpg')">
+            <video muted loop playsinline preload="metadata" src="assets/video/library.mp4"></video>
+          </div>
+          <div class="fut">
+            <i class="grid"></i>
+            <span class="co" style="left:15%; top:32%;"><i></i><em>Neural AI librarian searches 40M global papers</em></span>
+            <span class="co" style="left:55%; top:30%;"><i></i><em>Interactive study tables become shared boards</em></span>
+            <span class="co l" style="left:82%; top:48%;"><i></i><em>RFID shelves update digital borrowings instantly</em></span>
+            <span class="co" style="left:22%; top:82%;"><i></i><em>Quiet sensory pods for deep reading focus</em></span>
+          </div>
+          <i class="scan"></i>
+          <span class="tg td">Today (2026)</span>
+          <span class="tg tf">2040</span>
+          <span class="yr">2026</span>
+        </div>
+        <div class="copy">
+          <div class="td"><b>Today</b>Physical bookshelves, silence registers, paper checkouts.</div>
+          <div><b>In 2040</b>AI librarian connects students to global repositories in seconds, study desks synthesize cross-disciplinary research, zero queues.</div>
+          <div><b>Why we need it</b>No student should be limited by the books on one physical shelf. A connected global commons democratizes knowledge.<small>Links to: National Digital Library · NEP 2020 · SDG 4</small></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================================
+       07 PINNED HORIZONTAL SPORTS & CAMPUS HEALTH TRACK
+       ========================================================================= -->
+  <section class="hs" id="hs" data-chapter="Campus Life">
+    <div class="stick">
+      <div class="hh">
+        <h2 id="gh">A school is more than its classrooms</h2>
+        <p>Fit India and Khelo India already champion sport in schools. By 2040, biometric kinematics and AI coaches make athletic health personal for every DPS student.</p>
+      </div>
+      
+      <div class="trk" id="trk">
+        <article class="gc">
+          <i style="background-image: url('assets/photos/swimming.jpg');" role="img" aria-label="Swimming"></i>
+          <div><b>Swimming</b>AI stroke analysis from poolside cameras, giving kinesthetic stroke feedback before you exit the pool.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/gym.jpg');" role="img" aria-label="Fitness"></i>
+          <div><b>Fitness & Gym</b>Wearables monitor heart-rate variability and recovery, with an AI coach adapting drills to avoid injury.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/tennis.jpg');" role="img" aria-label="Tennis"></i>
+          <div><b>Tennis</b>Smart optical court lines track ball spin, bounce depth, and shot trajectory, replayed instantly on your slate.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/basketball.jpg');" role="img" aria-label="Basketball"></i>
+          <div><b>Basketball</b>Shot-arc kinematics and automatic multi-angle highlight reels for tactical team review.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/volleyball.jpg');" role="img" aria-label="Volleyball"></i>
+          <div><b>Volleyball</b>Pressure-sensing court lines register points in real-time, with training drills adapting to team weaknesses.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/tabletennis.jpg');" role="img" aria-label="Table Tennis"></i>
+          <div><b>Table Tennis</b>High-speed robotic ball-launching sparring partners that simulate master tournament spin at any skill level.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/shooting.jpg');" role="img" aria-label="Shooting"></i>
+          <div><b>Shooting</b>Electronic sensor targets provide shot-by-shot feedback on breathing, trigger pull, and steadiness.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/cricket.jpg');" role="img" aria-label="Cricket and Bus Bay"></i>
+          <div><b>Cricket & Bus Bay</b>Autonomous electric shuttles recharge under bifacial solar canopies shading the field.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/chess.jpg');" role="img" aria-label="Chess"></i>
+          <div><b>Chess</b>An interactive neural sparring partner explains tactical blunders and strategic alternatives in plain language.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/dance.jpg');" role="img" aria-label="Dance & Arts"></i>
+          <div><b>Dance & Arts</b>Optical motion capture compares mudras and rhythm with classical traditions, with AR stage lighting.</div>
+        </article>
+
+        <article class="gc">
+          <i style="background-image: url('assets/photos/computer.jpg');" role="img" aria-label="Computing Studio"></i>
+          <div><b>Computing</b>Every workstation is a creative software studio, with an AI that explains bugs and reviews architecture.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       08 THE NATIONAL MISSION CLOCK & INDIAN TIMELINE
+       ========================================================================= -->
+  <section class="tl" id="tl" data-chapter="National Timeline">
+    <div class="section-header reveal">
+      <div class="section-tag-row">
+        <span class="badge-tag">INDIA'S CLOCK · OUR SCHOOL'S PART</span>
+        <span class="teacher-spark-badge">NATIONAL ROADMAP 2030 – 2070</span>
+      </div>
+      <h2>India’s Deadlines, Our School’s Part</h2>
+      <p class="section-sub">
+        Every national milestone, and what DPS Mathura Road must do to ensure our students lead the nation.
+      </p>
+    </div>
+
+    <div class="rail">
+      <i id="rl"></i>
+      <div id="tli">
+        <div class="ti">
+          <b>2030</b>
+          <div>
+            <p><strong>India and the World:</strong> UN Sustainable Development Goals due (SDG 4: Quality Education). NEP 2020 targets 100% secondary school enrollment. India targets 500 GW non-fossil renewable capacity.</p>
+            <p style="margin-top: 10px;"><strong>Our School's Part:</strong> 100% Bagless Academic Slates deployed; bifacial rooftop solar canopies commissioned.</p>
+          </div>
+        </div>
+
+        <div class="ti">
+          <b>2035</b>
+          <div>
+            <p><strong>India and the World:</strong> India launches and operates the Bharatiya Antariksh Station (permanent low-Earth orbit space station).</p>
+            <p style="margin-top: 10px;"><strong>Our School's Part:</strong> Live ISRO orbital telemetry downlinks in physics labs; student-built CubeSats and orbital science experiments.</p>
+          </div>
+        </div>
+
+        <div class="ti">
+          <b>2040</b>
+          <div>
+            <p><strong>India and the World:</strong> ISRO’s stated milestone of landing an Indian astronaut on the Moon; AI and quantum computing reshape global industry.</p>
+            <p style="margin-top: 10px;"><strong>Our School's Part:</strong> The full smart campus: autonomous clean-air bio-dome, 6-axis robotics cells, and global holographic classrooms.</p>
+          </div>
+        </div>
+
+        <div class="ti">
+          <b>2047</b>
+          <div>
+            <p><strong>India and the World:</strong> Viksit Bharat: India celebrates 100 years of independence as a fully developed nation.</p>
+            <p style="margin-top: 10px;"><strong>Our School's Part:</strong> Today's Class 7 students (graduates of 2031) lead India's research labs, space agencies, industries, and public service.</p>
+          </div>
+        </div>
+
+        <div class="ti">
+          <b>2070</b>
+          <div>
+            <p><strong>India and the World:</strong> India’s net-zero carbon emissions pledge.</p>
+            <p style="margin-top: 10px;"><strong>Our School's Part:</strong> A paperless, electric, regenerative bio-campus serving as a living blueprint copied by thousands of schools across India.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       09 A DAY IN THE LIFE OF A DPS STUDENT IN 2040
+       ========================================================================= -->
+  <section class="timeline-section section-pad" data-chapter="A Day in 2040">
+    <div class="section-container">
+      <div class="section-header reveal">
+        <div class="section-tag-row">
+          <span class="badge-tag">A STUDENT’S ROUTINE</span>
+          <span class="teacher-spark-badge">HOW DAILY SCHOOL OPERATES IN 2040</span>
+        </div>
+        <h2>A Day in Manini’s Life at <span class="serif green">DPS 2040</span></h2>
+        <p class="section-sub">
+          What does a typical Tuesday look like when 12kg bags are gone, the campus air is pristine, and learning is fueled by curiosity?
+        </p>
+      </div>
+
+      <div class="day-timeline reveal">
+        <div class="timeline-step">
+          <div class="step-time">07:30 AM</div>
+          <div class="step-card">
+            <div class="step-icon">🚌</div>
+            <div class="step-content">
+              <h4>Electric Autonomous Shuttle & Zero Bag Load</h4>
+              <p>Leaves home carrying only her 320g shatterproof AR Slate. No 12kg backpack. The bus features quiet electric drive and real-time student safety sync.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-time">08:15 AM</div>
+          <div class="step-card">
+            <div class="step-icon">🍃</div>
+            <div class="step-content">
+              <h4>Clean-Air Morning Assembly in the Bio-Dome</h4>
+              <p>Students gather under the solar translucent canopy. Positive-pressure HEPA filters maintain AQI 18 while outdoor Delhi air is smoggy. Clear breathing, zero coughing.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-time">09:15 AM</div>
+          <div class="step-card">
+            <div class="step-icon">⚛️</div>
+            <div class="step-content">
+              <h4>AR Physics Pod with Anuradha Ma’am</h4>
+              <p>Teams gather around 3D touch desks. They track live orbital telemetry from ISRO’s lunar rover, calculating gravity parabolas in real-time collaboration.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-time">11:30 AM</div>
+          <div class="step-card">
+            <div class="step-icon">🥗</div>
+            <div class="step-content">
+              <h4>Hydroponic Bio-Lunch & Zero Waste</h4>
+              <p>Fresh organic microgreens harvested from the school’s vertical aeroponic towers. Food scraps enter campus anaerobic composters powering school soil.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-time">01:00 PM</div>
+          <div class="step-card">
+            <div class="step-icon">🤖</div>
+            <div class="step-content">
+              <h4>AI Robotics Workcell with Richa Ma’am</h4>
+              <p>Testing spatial collision algorithms on articulated robot arms. Students stress-test CAD components before 3D printing with recyclable bio-algae resin.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-time">02:30 PM</div>
+          <div class="step-card">
+            <div class="step-icon">🏊</div>
+            <div class="step-content">
+              <h4>Smart Sports & Kinetic Recovery with Usha Ma’am</h4>
+              <p>Sensor turf checks knee angle and sprint kinematics to prevent athletic injury. Olympic-grade water filtration in the heated solar pool.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-step">
+          <div class="step-time">03:30 PM</div>
+          <div class="step-card">
+            <div class="step-icon">🏡</div>
+            <div class="step-content">
+              <h4>100% Bagless Dismissal & Zero Homework Anxiety</h4>
+              <p>All core understanding was achieved and verified collaboratively during the day. Evenings are for family, hobbies, music, and peaceful rest.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       10 THE 2040 STUDENT PLEDGE WITH ANIMATED TICKS
+       ========================================================================= -->
+  <section class="ch" data-chapter="The Pledge">
+    <div class="section-header reveal">
+      <div class="section-tag-row">
+        <span class="badge-tag">STUDENT CHARTER</span>
+        <span class="teacher-spark-badge">OUR COMMITMENT TO THE FUTURE</span>
+      </div>
+      <h2>The 2040 Student Pledge</h2>
+      <p class="section-sub">
+        Five non-negotiable standards that guarantee technology serves humanity, not the other way around.
+      </p>
+    </div>
+    
+    <ul id="pl">
+      <!-- Populated dynamically with hand-drawn SVG ticks -->
+    </ul>
+  </section>
+
+  <!-- =========================================================================
+       11 CLOSING TRIBUTE & SIGNATURE (WARM & RICH, NO EMPTY VOID)
+       ========================================================================= -->
+  <section class="closing-section section-pad" data-chapter="Tomorrow">
+    <div class="section-container">
+      <div class="closing-box reveal">
+        <div class="closing-eyebrow">
+          <span>DELHI PUBLIC SCHOOL · MATHURA ROAD · VISION 2040</span>
+        </div>
+        <h2 class="closing-headline">
+          The future isn’t somewhere we go.<br>
+          <span class="serif mint">It’s something we build together.</span>
+        </h2>
+        <p class="closing-sub">
+          For the students, teachers, and future leaders of DPS Mathura Road, tomorrow will be extraordinary.
+        </p>
+
+        <!-- Teacher Appreciation Banner -->
+        <div class="teachers-honored-bar">
+          <span class="honored-title">Deepest Gratitude to Our Mentors:</span>
+          <div class="teachers-list">
+            <span class="teacher-chip">✨ Richa Ma’am</span>
+            <span class="teacher-chip">✨ Anuradha Ma’am</span>
+            <span class="teacher-chip">✨ Deepti Ma’am</span>
+            <span class="teacher-chip">✨ Usha Ma’am</span>
+            <span class="teacher-chip">✨ Prableen Ma’am</span>
+          </div>
+        </div>
+
+        <!-- Official Signature Badge -->
+        <div class="signature-card">
+          <div class="sig-header">
+            <div class="sig-avatar">👧🏻</div>
+            <div class="sig-meta">
+              <h4>Manini Sharma</h4>
+              <p>Student (Class 7-C) · Roll No. 24 · DPS Mathura Road, New Delhi</p>
+            </div>
+          </div>
+          <p class="sig-quote">
+            “I made this project because I love my school. I want DPS Mathura Road to lead India into 2040—showing that when you give children clean air, remove heavy backpacks, and give brilliant teachers time to mentor us, there is nothing our generation cannot achieve.”
+          </p>
+          <div class="sig-handwritten">
+            <span>Made with boundless curiosity & school pride 💖</span>
+            <span class="sig-year">Academic Project · Class of 2026 ➔ Vision 2040</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Apple-Style Production Footer -->
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-col-main">
+      <img class="footer-dps-logo" src="assets/dps-logo-full-dark.png" alt="Delhi Public School Mathura Road">
+      <p>Delhi Public School, Mathura Road, New Delhi<br>A Student Academic Proposal for 2040 by <strong>Manini Sharma</strong></p>
+      <span class="vercel-badge">⚡ Deployed & Hosted on Vercel · Production Ready Static CDN</span>
+    </div>
+
+    <div class="footer-col">
+      <h5>TEACHER MENTORS</h5>
+      <ul>
+        <li>Richa Ma’am · Adaptive Tab Testing & AI</li>
+        <li>Anuradha Ma’am · Bagless Learning & Telemetry</li>
+        <li>Deepti Ma’am · DNA Labs & Bio-Simulations</li>
+        <li>Usha Ma’am · Biometric Kinematics & Sports</li>
+        <li>Prableen Ma’am · 8K Microscopy & Optics</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h5>CORE 2040 TOPICS</h5>
+      <ul>
+        <li>0.0 kg Bagless AR Slate</li>
+        <li>Delhi Smog-Free Bio-Dome</li>
+        <li>6-Axis Robotics & Digital Twins</li>
+        <li>ISRO Lunar Telemetry Link</li>
+        <li>140% Solar Hyper-Canopies</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 DPS Mathura Road · Academic Project Submission by Manini Sharma (Class 7-C)</span>
+    <span class="footer-heart">100% Scroll-Driven · Matter.js Physics & Concept Sandbox Enabled</span>
+  </div>
+</footer>
+
+</body>
+</html>

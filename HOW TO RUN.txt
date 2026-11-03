@@ -1,0 +1,64 @@
+VISION 2040 — HOW TO RUN & DEPLOY TO VERCEL
+
+Project Directory:
+/Users/mayankbhardwaj/Desktop/Codlyn Softwares/manini/vision-2040
+
+=============================================================================
+OPTION 1 — DEPLOY TO VERCEL IN 1 MINUTE (LIVE ON THE INTERNET)
+=============================================================================
+
+Your project has vercel.json and package.json configured. You can deploy it
+instantly to Vercel in either of two ways:
+
+Method A — Via GitHub (Recommended):
+1. Create a new GitHub repository (e.g. "dps-vision-2040").
+2. Push the contents of the "vision-2040" folder to your GitHub repo:
+   cd "/Users/mayankbhardwaj/Desktop/Codlyn Softwares/manini/vision-2040"
+   git init
+   git add .
+   git commit -m "Vision 2040 DPS Mathura Road"
+   git branch -M main
+   git remote add origin <YOUR_GITHUB_REPO_URL>
+   git push -u origin main
+3. Go to https://vercel.com/new and click "Import" next to your repo.
+4. Framework Preset: Leave as "Other" (Static HTML).
+5. Click "Deploy". Your site is live worldwide with SSL in under 15 seconds!
+
+Method B — Via Vercel CLI:
+1. In Terminal, navigate to the folder:
+   cd "/Users/mayankbhardwaj/Desktop/Codlyn Softwares/manini/vision-2040"
+2. Run:
+   npx vercel
+3. Follow the 3 prompts (hit Enter to accept defaults). Vercel gives you an
+   instant production URL!
+
+=============================================================================
+OPTION 2 — INSTANT PREVIEW LOCALLY (NO SERVER REQUIRED)
+=============================================================================
+1. Open Finder and go to: Desktop > Codlyn Softwares > manini > vision-2040.
+2. Double-click "Vision 2040 - Offline.html".
+3. It opens in Chrome/Safari with all images, styles, and swarm scripts
+   embedded offline. Zero internet or install needed!
+
+=============================================================================
+OPTION 3 — LOCAL DEV SERVER
+=============================================================================
+1. In Terminal:
+   cd "/Users/mayankbhardwaj/Desktop/Codlyn Softwares/manini/vision-2040"
+   python3 -m http.server 8040 --bind 127.0.0.1
+2. Open http://127.0.0.1:8040/ in your browser.
+
+=============================================================================
+KEY FEATURES
+=============================================================================
+• Full-Screen 3D Paper Plane: Glides across the ENTIRE screen dynamically
+  with an aerodynamic contrail wake that tracks scroll position.
+• Swarm Reconstruction Engine: 7 named collaborative cursors (Manini, Richa Ma'am,
+  Anuradha Ma'am, Deepti Ma'am, Prableen Ma'am, Usha Ma'am, DPS AI Core)
+  dismantle the real school photographs and rebuild the 2040 vision in real-time.
+• 100% Scroll-Driven: Zero clicks required anywhere on the site.
+• Apple-Grade Aesthetic: Outfit typography, editorial Newsreader italics,
+  frosted glassmorphism, and authentic schoolgirl doodles (Caveat font).
+• Teacher Sparks: Direct attribution to Richa Ma’am, Anuradha Ma’am,
+  Deepti Ma’am, Usha Ma’am, and Prableen Ma’am.
+• Project Submission: Proudly credited to Manini Sharma (DPS Mathura Road).
