@@ -16,9 +16,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <!-- Core Stylesheets & Scripts -->
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2040.6">
 <script src="matter.min.js"></script>
-<script src="script.js" defer></script>
+<script src="script.js?v=2040.6" defer></script>
 </head>
 <body>
 
@@ -152,7 +152,7 @@
       </div>
     </div>
 
-    <!-- Horizontal Continuous Activity Marquee Strip -->
+    <!-- Horizontal Continuous Activity Marquee Strip (Infinite Auto-Glide) -->
     <div class="strip-wrap reveal" aria-label="School activities preview strip">
       <div class="strip" id="strip">
         <i style="background-image: url('assets/photos/swimming.jpg');" title="Swimming Pool"></i>
@@ -165,29 +165,49 @@
         <i style="background-image: url('assets/photos/shooting.jpg');" title="Shooting Range"></i>
         <i style="background-image: url('assets/photos/tabletennis.jpg');" title="Table Tennis"></i>
         <i style="background-image: url('assets/photos/cricket.jpg');" title="Cricket Oval & Electric Bus Bay"></i>
+        <!-- Duplicate set for seamless continuous marquee loop -->
+        <i style="background-image: url('assets/photos/swimming.jpg');" title="Swimming Pool" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/dance.jpg');" title="Dance & Arts" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/gym.jpg');" title="Fitness Arena" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/tennis.jpg');" title="Tennis Courts" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/chess.jpg');" title="Chess Academy" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/basketball.jpg');" title="Basketball Arena" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/volleyball.jpg');" title="Volleyball Court" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/shooting.jpg');" title="Shooting Range" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/tabletennis.jpg');" title="Table Tennis" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/cricket.jpg');" title="Cricket Oval & Electric Bus Bay" aria-hidden="true"></i>
       </div>
     </div>
 
-    <!-- 4 High-Impact Strategic Numbers -->
+    <!-- 4 High-Impact Strategic Numbers (Cleanly Aligned Grid) -->
     <div class="campus-pills-bar reveal">
       <div class="pill-item">
         <span class="pill-num">0.0 kg</span>
-        <div><strong>Zero Backpack Load</strong><p>Single featherweight AR Slate replaces all books</p></div>
+        <div class="pill-text-wrap">
+          <strong>Zero Backpack Load</strong>
+          <p>Single featherweight AR Slate replaces all books</p>
+        </div>
       </div>
-      <div class="pill-divider"></div>
       <div class="pill-item">
-        <span class="pill-num">< 20 AQI</span>
-        <div><strong>Delhi Clean-Air Dome</strong><p>H13 HEPA positive pressure throughout campus</p></div>
+        <span class="pill-num">&lt; 20 AQI</span>
+        <div class="pill-text-wrap">
+          <strong>Delhi Clean-Air Dome</strong>
+          <p>H13 HEPA positive pressure throughout campus</p>
+        </div>
       </div>
-      <div class="pill-divider"></div>
       <div class="pill-item">
         <span class="pill-num">140%</span>
-        <div><strong>Solar Self-Sufficiency</strong><p>Bifacial canopies power labs & export green power</p></div>
+        <div class="pill-text-wrap">
+          <strong>Solar Self-Sufficiency</strong>
+          <p>Bifacial canopies power labs &amp; export green power</p>
+        </div>
       </div>
-      <div class="pill-divider"></div>
       <div class="pill-item">
-        <span class="pill-num">1 : 1</span>
-        <div><strong>AI Mentor Co-Pilot</strong><p>Personalized pacing; zero rote memorization stress</p></div>
+        <span class="pill-num">1:1</span>
+        <div class="pill-text-wrap">
+          <strong>AI Mentor Co-Pilot</strong>
+          <p>Personalized pacing; zero rote memorization stress</p>
+        </div>
       </div>
     </div>
   </section>
@@ -217,49 +237,94 @@
 
     <!-- 4 Sticky Stacked Cards -->
     <div class="why-stack" id="cards">
+      <!-- Card 1 -->
       <article class="cd" style="--i:0; --c:#0e7c4a;">
+        <svg class="cd-doodle" viewBox="0 0 50 50" aria-hidden="true">
+          <circle cx="25" cy="25" r="18" fill="none" stroke="#0e7c4a" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.8"/>
+          <path d="M25 12 L25 25 L34 25" fill="none" stroke="#0e7c4a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 01</span>
           <h3>The students are the 2040 workforce</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-pill-row">
+            <span class="cd-mini-pill">Class 7 (Age 12 in 2026) ➔ Age 26 in 2040</span>
+            <span class="cd-highlight-tag">National Workforce Ready</span>
+          </div>
           <p>A Class 6 or 7 student at DPS Mathura Road today will be in their mid-20s in 2040. What we learn right now decides whether India's scientific, economic, and diplomatic plans are carried out by people who are truly ready for them.</p>
         </div>
       </article>
 
+      <!-- Card 2 -->
       <article class="cd" style="--i:1; --c:#2554e8;">
+        <!-- Hand-drawn curved arrow doodle matching Claude screenshot 2 -->
+        <svg class="cd-doodle" viewBox="0 0 60 50" aria-hidden="true">
+          <path d="M12 40 C 22 10, 48 10, 52 26" fill="none" stroke="#2554e8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M42 22 L 52 26 L 49 36" fill="none" stroke="#2554e8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 02</span>
           <h3>India has set its own deadlines</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-milestone-chips">
+            <span class="m-chip"><b>2030</b> NEP Foundational</span>
+            <span class="m-chip"><b>2035</b> Space Station</span>
+            <span class="m-chip"><b>2040</b> Moon Landing</span>
+            <span class="m-chip"><b>2047</b> Viksit Bharat</span>
+          </div>
           <p>Universal quality schooling by 2030 (NEP 2020), Bharatiya Antariksh Station by 2035, an Indian astronaut on the Moon by 2040, and a developed nation by 2047 (Viksit Bharat). A school that stays stuck in the 1990s becomes a national bottleneck.</p>
         </div>
       </article>
 
+      <!-- Card 3 -->
       <article class="cd" style="--i:2; --c:#c77700;">
+        <!-- Hand-drawn 5-point star doodle matching Claude screenshot 2 -->
+        <svg class="cd-doodle" viewBox="0 0 50 50" aria-hidden="true">
+          <path d="M 25 4 L 30 18 L 45 19 L 33 29 L 37 44 L 25 35 L 13 44 L 17 29 L 5 19 L 20 18 Z" fill="none" stroke="#c77700" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 03</span>
           <h3>Learning itself is changing forever</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-dual-role">
+            <div class="role-pill ai"><span>🤖 AI Routine Support:</span> Fact recall, grading papers, schedules</div>
+            <div class="role-pill teacher"><span>❤️ Teacher Priority:</span> Empathy, wisdom, character & mentorship</div>
+          </div>
           <p>Generative AI will automate routine fact recall and basic code. Schools must teach students how to question, synthesize, and build original things—freeing our brilliant teachers to mentor hearts instead of grading paper.</p>
         </div>
       </article>
 
+      <!-- Card 4 -->
       <article class="cd" style="--i:3; --c:#5b3fb8;">
+        <!-- Hand-drawn curved bracket doodle matching Claude screenshot 2 -->
+        <svg class="cd-doodle" viewBox="0 0 50 50" aria-hidden="true">
+          <path d="M 12 40 C 24 38, 38 28, 40 10" fill="none" stroke="#5b3fb8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 28 12 L 40 10 L 40 22" fill="none" stroke="#5b3fb8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 04</span>
           <h3>The campus must carry less</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-metrics-bar">
+            <div class="metric-item"><span class="m-num">0.0 kg</span><span class="m-lbl">Physical Bag Weight</span></div>
+            <div class="metric-item"><span class="m-num">100%</span><span class="m-lbl">Clean Solar Energy</span></div>
+            <div class="metric-item"><span class="m-num">Zero</span><span class="m-lbl">Paper Deforestation</span></div>
+          </div>
           <p>12kg backpacks, paper deforestation, and manual administrative routines cost health, time, and money. A net-zero India by 2070 begins with schools that prove zero-waste, solar-first living is possible today.</p>
         </div>
       </article>
     </div>
+  </section>
 
-    <!-- Interactive Mission Matrix Tabs -->
-    <div class="matrix-box reveal" style="margin-top: 48px;">
+  <!-- =========================================================================
+       03B INTERACTIVE MISSION MATRIX TABS
+       ========================================================================= -->
+  <section class="mission-matrix-section">
+    <div class="matrix-box reveal" style="margin-top: 0;">
       <div class="matrix-tabs-header">
         <span class="matrix-title">EXPLORE THE 4 MISSION STRATEGIES:</span>
         <div class="matrix-nav">
@@ -375,47 +440,106 @@
   </section>
 
   <!-- =========================================================================
-       05 INTERACTIVE 2040 CONCEPT PHYSICS SANDBOX
+       05 INTERACTIVE 2040 CONCEPT INNOVATION BLUEPRINTS (LIGHTWEIGHT EXPLORER)
        ========================================================================= -->
-  <section id="physics-sandbox" class="sandbox-section section-pad" data-chapter="Physics Sandbox">
+  <section id="physics-sandbox" class="blueprint-section section-pad" data-chapter="Innovation Blueprints">
     <div class="section-container">
       <div class="section-header reveal">
         <div class="section-tag-row">
-          <span class="badge-tag">INTERACTIVE GRAVITY PLAYGROUND</span>
-          <span class="teacher-spark-badge">TOUCH · DRAG · BOUNCE · EXPLORE</span>
+          <span class="badge-tag">INTERACTIVE MISSION BLUEPRINTS</span>
+          <span class="teacher-spark-badge">LIGHTWEIGHT · INTERACTIVE · 8 PILLARS</span>
         </div>
-        <h2>The 8 Gravity Pillars of <span class="serif green">Vision 2040</span></h2>
+        <h2>The 8 Core Pillars of <span class="serif green">Vision 2040</span></h2>
         <p class="section-sub">
-          Drag and fling the concept orbs around the physics sandbox! Watch them bounce and collide. Click or hover any sphere to inspect its technical blueprint, the "Why We Need It" rationale, and national alignment.
+          Click any innovation below to inspect its technical blueprint, today's real classroom bottleneck, the 2040 smart solution, and its direct alignment with India's national missions.
         </p>
       </div>
 
-      <div class="sandbox-stage-grid reveal">
-        <div class="sandbox-canvas-card">
-          <div class="sandbox-toolbar">
-            <div class="toolbar-left">
-              <span class="toolbar-dot green"></span>
-              <span class="toolbar-title">2040 MISSION PHYSICS ENGINE</span>
-            </div>
-            <div class="toolbar-actions">
-              <button id="sandbox-btn-shake" class="sandbox-action-btn">
-                <span>💥</span> Shake Sandbox
-              </button>
-              <button id="sandbox-btn-zerog" class="sandbox-action-btn">
-                <span>🌌</span> Zero-G: OFF
-              </button>
-            </div>
+      <div class="blueprint-stage-grid reveal">
+        <!-- Left: 8 Interactive Innovation Selector Cards -->
+        <div class="blueprint-selector-column">
+          <div class="blueprint-selector-header">
+            <span class="toolbar-dot green"></span>
+            <span class="toolbar-title">SELECT A PILLAR TO INSPECT BLUEPRINT:</span>
           </div>
           
-          <div class="canvas-wrap">
-            <canvas id="physics-sandbox-canvas"></canvas>
-            <div class="canvas-hint-overlay">
-              <span>✦ Grab & throw any orb with your mouse · Click to inspect blueprint ✦</span>
-            </div>
+          <div class="blueprint-buttons-grid" id="blueprint-buttons-grid">
+            <button class="bp-pill-btn active" data-id="quantum-bio" style="--accent: #10B981;">
+              <span class="bp-pill-icon">⚛️</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Quantum Bio Lab</span>
+                <span class="bp-pill-tag">Viksit Bharat 2047</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="robotics-arm" style="--accent: #3B82F6;">
+              <span class="bp-pill-icon">🤖</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">AI Robotics Cell</span>
+                <span class="bp-pill-tag">Atal Innovation Mission</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="isro-downlink" style="--accent: #F59E0B;">
+              <span class="bp-pill-icon">🚀</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">ISRO Moon Link</span>
+                <span class="bp-pill-tag">ISRO 2040 Mission</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="solar-canopy" style="--accent: #10B981;">
+              <span class="bp-pill-icon">☀️</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Zero-Carbon Campus</span>
+                <span class="bp-pill-tag">Net-Zero 2070</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="ai-tutor" style="--accent: #8B5CF6;">
+              <span class="bp-pill-icon">🧠</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">AI Mentor Co-Pilot</span>
+                <span class="bp-pill-tag">UN SDG 4 Education</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="bagless-slate" style="--accent: #EC4899;">
+              <span class="bp-pill-icon">🎒</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">0kg Bagless Slate</span>
+                <span class="bp-pill-tag">Health &amp; Ergonomics</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="smart-sports" style="--accent: #06B6D4;">
+              <span class="bp-pill-icon">🏃🏻‍♂️</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Kinematic Sports AI</span>
+                <span class="bp-pill-tag">Khelo India 2040</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="clean-air" style="--accent: #059669;">
+              <span class="bp-pill-icon">🍃</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Delhi AQI Bio-Dome</span>
+                <span class="bp-pill-tag">Clean Air Programme</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
           </div>
         </div>
 
-        <div class="sandbox-intel-column">
+        <!-- Right: Active Technical Blueprint Intel Card -->
+        <div class="blueprint-intel-column">
           <div id="sandbox-mission-card" class="mission-card">
             <div class="mission-card-header" style="border-left: 4px solid #10B981;">
               <span class="mission-card-icon">⚛️</span>
@@ -433,7 +557,7 @@
               
               <div class="mission-intel-row">
                 <span class="intel-label">✨ 2040 SOLUTION</span>
-                <p class="intel-text"><strong>CRISPR molecular simulations & 8K digital electron microscopy.</strong></p>
+                <p class="intel-text"><strong>CRISPR molecular simulations &amp; 8K digital electron microscopy.</strong></p>
               </div>
               
               <div class="mission-intel-row">
@@ -442,7 +566,7 @@
               </div>
               
               <div class="mission-intel-footer">
-                <span class="intel-teacher">👩🏻‍🏫 Spark: <strong>Deepti Ma’am & Prableen Ma’am</strong></span>
+                <span class="intel-teacher">👩🏻‍🏫 Spark: <strong>Deepti Ma’am &amp; Prableen Ma’am</strong></span>
               </div>
             </div>
           </div>
@@ -1106,7 +1230,7 @@
 
   <div class="footer-bottom">
     <span>© 2026 DPS Mathura Road · Academic Project Submission by Manini Sharma (Class 7-C)</span>
-    <span class="footer-heart">100% Scroll-Driven · Matter.js Physics & Concept Sandbox Enabled</span>
+    <span class="footer-credit">Assistance with ❤️ by <a href="https://codlynsoft.com" target="_blank" rel="noopener noreferrer" class="codlyn-link">Codlyn Softwares</a></span>
   </div>
 </footer>
 

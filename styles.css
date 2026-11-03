@@ -63,7 +63,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   /* Millimeter Graph Paper Grid with Soft Pastel Aurora Watercolor Glow */
   background-image: 
@@ -647,12 +647,14 @@ html.js-motion .reveal.is-visible {
   z-index: 10;
 }
 
-/* Continuous Activity Marquee Strip */
+/* Continuous Infinite Activity Marquee Strip */
 .strip-wrap {
   overflow: hidden;
   position: relative;
   width: 100%;
   margin: 20px 0 30px;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
 }
 
 .strip {
@@ -661,72 +663,137 @@ html.js-motion .reveal.is-visible {
   gap: 16px;
   width: max-content;
   padding: 10px 0;
+  animation: stripInfiniteScroll 36s linear infinite;
   will-change: transform;
+}
+
+.strip:hover {
+  animation-play-state: paused;
+}
+
+@keyframes stripInfiniteScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .strip i {
   display: block;
-  width: clamp(150px, 20vw, 220px);
+  width: clamp(160px, 20vw, 230px);
   aspect-ratio: 4/5;
   height: auto;
-  border-radius: 14px;
+  border-radius: 16px;
   background: center/cover no-repeat;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 14px 28px -12px rgba(12, 26, 43, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.strip i:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 38px -12px rgba(15, 74, 42, 0.35);
 }
 
 .strip i:nth-child(even) {
   margin-top: 18px;
 }
 
-/* 4 Strategic Stats Bar */
+/* 4 Strategic Stats Bar (Perfect Responsive Grid Alignment) */
 .campus-pills-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
   background: #FFFFFF;
   border: 1px solid var(--border-card);
   border-radius: 20px;
-  padding: 24px 32px;
-  box-shadow: var(--shadow-md);
-  margin-top: 20px;
-  flex-wrap: wrap;
-  gap: 20px;
+  padding: 22px 28px;
+  box-shadow: 0 12px 32px -10px rgba(12, 26, 43, 0.08);
+  margin-top: 24px;
+  align-items: center;
 }
 
 .pill-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex: 1;
-  min-width: 200px;
+  gap: 14px;
+  padding: 6px 18px;
+  border-right: 1px solid var(--border-subtle);
+  min-width: 0;
+}
+
+.pill-item:first-child {
+  padding-left: 0;
+}
+
+.pill-item:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 
 .pill-num {
-  font-size: 26px;
+  font-family: var(--font-sans);
+  font-size: clamp(22px, 2vw, 28px);
   font-weight: 800;
   color: var(--dps-green);
+  line-height: 1;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.pill-item strong {
+.pill-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.pill-text-wrap strong {
   display: block;
-  font-size: 14px;
+  font-size: 13.5px;
+  font-weight: 700;
   color: var(--dps-green);
-  margin-bottom: 2px;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
-.pill-item p {
-  font-size: 12px;
+.pill-text-wrap p {
+  font-size: 11.5px;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.35;
+  margin: 0;
 }
 
-.pill-divider {
-  width: 1px;
-  height: 40px;
-  background: var(--border-card);
+@media (max-width: 1040px) {
+  .campus-pills-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 24px;
+    padding: 20px 24px;
+  }
+  .pill-item {
+    border-right: none;
+    padding: 4px 8px;
+  }
+  .pill-item:nth-child(1),
+  .pill-item:nth-child(3) {
+    border-right: 1px solid var(--border-subtle);
+  }
+}
+
+@media (max-width: 620px) {
+  .campus-pills-bar {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+  .pill-item {
+    border-right: none !important;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .pill-item:last-child {
+    border-bottom: none;
+  }
 }
 
 /* ==========================================================================
@@ -812,45 +879,197 @@ html.js-motion .reveal.is-visible {
   color: var(--text-muted);
 }
 
+.why {
+  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 10vh max(5vw, 24px) 14vh;
+}
+
 .why-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 40px;
+  position: relative;
+  display: block;
+  margin-top: 4vh;
+  margin-bottom: 60px;
+  padding-bottom: 22vh;
 }
 
 .cd {
   position: sticky;
-  top: calc(11vh + var(--i) * 20px);
+  top: calc(88px + var(--i) * 36px);
+  z-index: calc(10 + var(--i));
   background: #FFFFFF;
   border: 1px solid var(--border-card);
-  border-top: 4px solid var(--c);
+  border-top: 5px solid var(--c);
   border-radius: 20px;
-  padding: clamp(24px, 3.5vw, 44px);
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 28px;
-  align-items: center;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  overflow: visible;
+  padding: clamp(28px, 4vw, 44px);
+  margin-top: 4vh;
+  margin-bottom: 18vh;
+  min-height: 44svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  box-shadow: 0 24px 50px -20px rgba(12, 26, 43, 0.28), 0 0 0 1px rgba(15, 74, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@media (max-width: 760px) {
-  .cd { grid-template-columns: 1fr; }
+.cd-doodle {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@media (max-width: 820px) {
+  .cd {
+    min-height: auto;
+    padding: 24px 20px;
+    margin-top: 3.5vh;
+    margin-bottom: 12vh;
+    top: calc(76px + var(--i) * 26px);
+    gap: 14px;
+  }
+  .cd-doodle {
+    top: 14px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.mission-matrix-section {
+  max-width: 1140px;
+  margin: 0 auto 90px;
+  padding: 0 max(5vw, 24px);
+  position: relative;
 }
 
 .cd h3 {
-  font-size: clamp(1.8rem, 3.8vw, 3rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.8vw, 2.9rem);
+  line-height: 1.06;
   color: var(--dps-green);
   font-family: var(--font-serif);
+  margin-top: 8px;
 }
 
 .cd p {
   color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+/* Card Visual Micro-Elements */
+.cd-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cd-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cd-mini-pill {
+  background: var(--dps-light);
+  color: var(--dps-green);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 74, 42, 0.15);
+}
+
+.cd-highlight-tag {
+  background: #FEF3C7;
+  color: #92400E;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.cd-milestone-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.m-chip {
+  background: #EFF6FF;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #1E40AF;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.m-chip b {
+  color: #1D4ED8;
+  margin-right: 4px;
+}
+
+.cd-dual-role {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-pill {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-pill.ai {
+  background: #F3F4F6;
+  color: #374151;
+  border: 1px solid #E5E7EB;
+}
+
+.role-pill.teacher {
+  background: #FDF2F8;
+  color: #9D174D;
+  border: 1px solid rgba(219, 39, 119, 0.2);
+  font-weight: 700;
+}
+
+.cd-metrics-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.metric-item {
+  background: #F0FDF4;
+  border: 1px solid rgba(22, 101, 52, 0.2);
+  border-radius: 12px;
+  padding: 8px 14px;
+  min-width: 90px;
+}
+
+.metric-item .m-num {
+  font-size: 17px;
+  font-weight: 800;
+  color: #166534;
+  display: block;
+}
+
+.metric-item .m-lbl {
+  font-size: 10.5px;
+  color: #374151;
+  font-weight: 600;
 }
 
 /* Interactive Mission Matrix Box */
@@ -1126,112 +1345,138 @@ html.js-motion .reveal.is-visible {
 .box.f .cap .b { display: inline; color: var(--dps-green); font-weight: 700; }
 
 /* ==========================================================================
-   05 2D Interactive Concept Physics Sandbox (The 8 Gravity Pillars)
+   05 Lightweight Interactive Concept Innovation Blueprints (The 8 Pillars)
    ========================================================================== */
-.sandbox-stage-grid {
+.blueprint-stage-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1.4fr;
+  grid-template-columns: 1.15fr 1fr;
   gap: 28px;
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (max-width: 960px) {
-  .sandbox-stage-grid { grid-template-columns: 1fr; }
+  .blueprint-stage-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.sandbox-canvas-card {
+.blueprint-selector-column {
   background: #FFFFFF;
   border: 1.5px solid var(--border-card);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
 }
 
-.sandbox-toolbar {
+.blueprint-selector-header {
   background: #F9FAFB;
   border-bottom: 1px solid var(--border-card);
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.toolbar-left {
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.toolbar-dot.green {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #10B981;
+.blueprint-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 18px;
+  flex: 1;
 }
 
-.toolbar-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--dps-green);
+@media (max-width: 580px) {
+  .blueprint-buttons-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.toolbar-actions {
+.bp-pill-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.sandbox-action-btn {
-  background: #FFFFFF;
-  border: 1px solid var(--border-card);
-  color: var(--text-main);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 5px 12px;
+  gap: 12px;
+  background: #F9FAFB;
+  border: 1.5px solid var(--border-subtle);
   border-radius: 16px;
+  padding: 12px 14px;
+  text-align: left;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  font-family: inherit;
+  width: 100%;
 }
 
-.sandbox-action-btn:hover {
-  background: var(--dps-light);
-  border-color: var(--dps-green);
+.bp-pill-btn:hover {
+  background: #FFFFFF;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -6px rgba(12, 26, 43, 0.12);
+}
+
+.bp-pill-btn.active {
+  background: #FFFFFF;
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px -8px var(--accent), 0 0 0 2px var(--accent);
+}
+
+.bp-pill-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(15, 74, 42, 0.04);
+}
+
+.bp-pill-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.bp-pill-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-pill-btn.active .bp-pill-title {
   color: var(--dps-green);
 }
 
-.sandbox-action-btn.active {
-  background: var(--pastel-lavender-soft);
-  border-color: var(--pastel-lavender);
-  color: var(--pastel-lavender);
-}
-
-.canvas-wrap {
-  position: relative;
-  background: radial-gradient(circle at center, #FFFFFF 0%, #F8FAF7 100%);
-  width: 100%;
-}
-
-#physics-sandbox-canvas {
-  width: 100%;
-  height: 520px;
-  display: block;
-  touch-action: none;
-}
-
-.canvas-hint-overlay {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 11px;
+.bp-pill-tag {
+  font-size: 10.5px;
   font-weight: 600;
-  color: var(--text-light-sub);
-  pointer-events: none;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-pill-arrow {
+  font-size: 14px;
+  color: var(--text-muted);
+  opacity: 0.4;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.bp-pill-btn.active .bp-pill-arrow,
+.bp-pill-btn:hover .bp-pill-arrow {
+  opacity: 1;
+  color: var(--accent);
+  transform: translateX(3px);
 }
 
 /* Side Mission Card (Intel Dossier) */
@@ -2192,4 +2437,17 @@ html.js-motion .reveal.is-visible {
   color: var(--text-light-sub);
   flex-wrap: wrap;
   gap: 12px;
+}
+
+.codlyn-link {
+  color: var(--dps-green);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.codlyn-link:hover {
+  color: #059669;
+  opacity: 0.85;
 }

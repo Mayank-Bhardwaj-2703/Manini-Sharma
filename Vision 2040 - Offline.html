@@ -82,7 +82,7 @@ html {
 }
 
 body {
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
   /* Millimeter Graph Paper Grid with Soft Pastel Aurora Watercolor Glow */
   background-image: 
@@ -666,12 +666,14 @@ html.js-motion .reveal.is-visible {
   z-index: 10;
 }
 
-/* Continuous Activity Marquee Strip */
+/* Continuous Infinite Activity Marquee Strip */
 .strip-wrap {
   overflow: hidden;
   position: relative;
   width: 100%;
   margin: 20px 0 30px;
+  mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
 }
 
 .strip {
@@ -680,72 +682,137 @@ html.js-motion .reveal.is-visible {
   gap: 16px;
   width: max-content;
   padding: 10px 0;
+  animation: stripInfiniteScroll 36s linear infinite;
   will-change: transform;
+}
+
+.strip:hover {
+  animation-play-state: paused;
+}
+
+@keyframes stripInfiniteScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .strip i {
   display: block;
-  width: clamp(150px, 20vw, 220px);
+  width: clamp(160px, 20vw, 230px);
   aspect-ratio: 4/5;
   height: auto;
-  border-radius: 14px;
+  border-radius: 16px;
   background: center/cover no-repeat;
-  box-shadow: var(--shadow-md);
-  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 14px 28px -12px rgba(12, 26, 43, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.strip i:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 20px 38px -12px rgba(15, 74, 42, 0.35);
 }
 
 .strip i:nth-child(even) {
   margin-top: 18px;
 }
 
-/* 4 Strategic Stats Bar */
+/* 4 Strategic Stats Bar (Perfect Responsive Grid Alignment) */
 .campus-pills-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
   background: #FFFFFF;
   border: 1px solid var(--border-card);
   border-radius: 20px;
-  padding: 24px 32px;
-  box-shadow: var(--shadow-md);
-  margin-top: 20px;
-  flex-wrap: wrap;
-  gap: 20px;
+  padding: 22px 28px;
+  box-shadow: 0 12px 32px -10px rgba(12, 26, 43, 0.08);
+  margin-top: 24px;
+  align-items: center;
 }
 
 .pill-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  flex: 1;
-  min-width: 200px;
+  gap: 14px;
+  padding: 6px 18px;
+  border-right: 1px solid var(--border-subtle);
+  min-width: 0;
+}
+
+.pill-item:first-child {
+  padding-left: 0;
+}
+
+.pill-item:last-child {
+  border-right: none;
+  padding-right: 0;
 }
 
 .pill-num {
-  font-size: 26px;
+  font-family: var(--font-sans);
+  font-size: clamp(22px, 2vw, 28px);
   font-weight: 800;
   color: var(--dps-green);
+  line-height: 1;
   letter-spacing: -0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-.pill-item strong {
+.pill-text-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.pill-text-wrap strong {
   display: block;
-  font-size: 14px;
+  font-size: 13.5px;
+  font-weight: 700;
   color: var(--dps-green);
-  margin-bottom: 2px;
+  line-height: 1.25;
+  white-space: nowrap;
 }
 
-.pill-item p {
-  font-size: 12px;
+.pill-text-wrap p {
+  font-size: 11.5px;
   color: var(--text-muted);
-  line-height: 1.4;
+  line-height: 1.35;
+  margin: 0;
 }
 
-.pill-divider {
-  width: 1px;
-  height: 40px;
-  background: var(--border-card);
+@media (max-width: 1040px) {
+  .campus-pills-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 24px;
+    padding: 20px 24px;
+  }
+  .pill-item {
+    border-right: none;
+    padding: 4px 8px;
+  }
+  .pill-item:nth-child(1),
+  .pill-item:nth-child(3) {
+    border-right: 1px solid var(--border-subtle);
+  }
+}
+
+@media (max-width: 620px) {
+  .campus-pills-bar {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 20px;
+  }
+  .pill-item {
+    border-right: none !important;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .pill-item:last-child {
+    border-bottom: none;
+  }
 }
 
 /* ==========================================================================
@@ -831,45 +898,197 @@ html.js-motion .reveal.is-visible {
   color: var(--text-muted);
 }
 
+.why {
+  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 10vh max(5vw, 24px) 14vh;
+}
+
 .why-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  margin-bottom: 40px;
+  position: relative;
+  display: block;
+  margin-top: 4vh;
+  margin-bottom: 60px;
+  padding-bottom: 22vh;
 }
 
 .cd {
   position: sticky;
-  top: calc(11vh + var(--i) * 20px);
+  top: calc(88px + var(--i) * 36px);
+  z-index: calc(10 + var(--i));
   background: #FFFFFF;
   border: 1px solid var(--border-card);
-  border-top: 4px solid var(--c);
+  border-top: 5px solid var(--c);
   border-radius: 20px;
-  padding: clamp(24px, 3.5vw, 44px);
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 28px;
-  align-items: center;
-  box-shadow: var(--shadow-lg);
-  position: relative;
-  overflow: visible;
+  padding: clamp(28px, 4vw, 44px);
+  margin-top: 4vh;
+  margin-bottom: 18vh;
+  min-height: 44svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  box-shadow: 0 24px 50px -20px rgba(12, 26, 43, 0.28), 0 0 0 1px rgba(15, 74, 42, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@media (max-width: 760px) {
-  .cd { grid-template-columns: 1fr; }
+.cd-doodle {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  width: 48px;
+  height: 48px;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+@media (max-width: 820px) {
+  .cd {
+    min-height: auto;
+    padding: 24px 20px;
+    margin-top: 3.5vh;
+    margin-bottom: 12vh;
+    top: calc(76px + var(--i) * 26px);
+    gap: 14px;
+  }
+  .cd-doodle {
+    top: 14px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+.mission-matrix-section {
+  max-width: 1140px;
+  margin: 0 auto 90px;
+  padding: 0 max(5vw, 24px);
+  position: relative;
 }
 
 .cd h3 {
-  font-size: clamp(1.8rem, 3.8vw, 3rem);
-  line-height: 1.05;
+  font-size: clamp(1.8rem, 3.8vw, 2.9rem);
+  line-height: 1.06;
   color: var(--dps-green);
   font-family: var(--font-serif);
+  margin-top: 8px;
 }
 
 .cd p {
   color: var(--text-muted);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+/* Card Visual Micro-Elements */
+.cd-visual {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cd-pill-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.cd-mini-pill {
+  background: var(--dps-light);
+  color: var(--dps-green);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 74, 42, 0.15);
+}
+
+.cd-highlight-tag {
+  background: #FEF3C7;
+  color: #92400E;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(217, 119, 6, 0.2);
+}
+
+.cd-milestone-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.m-chip {
+  background: #EFF6FF;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  color: #1E40AF;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.m-chip b {
+  color: #1D4ED8;
+  margin-right: 4px;
+}
+
+.cd-dual-role {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.role-pill {
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.role-pill.ai {
+  background: #F3F4F6;
+  color: #374151;
+  border: 1px solid #E5E7EB;
+}
+
+.role-pill.teacher {
+  background: #FDF2F8;
+  color: #9D174D;
+  border: 1px solid rgba(219, 39, 119, 0.2);
+  font-weight: 700;
+}
+
+.cd-metrics-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.metric-item {
+  background: #F0FDF4;
+  border: 1px solid rgba(22, 101, 52, 0.2);
+  border-radius: 12px;
+  padding: 8px 14px;
+  min-width: 90px;
+}
+
+.metric-item .m-num {
+  font-size: 17px;
+  font-weight: 800;
+  color: #166534;
+  display: block;
+}
+
+.metric-item .m-lbl {
+  font-size: 10.5px;
+  color: #374151;
+  font-weight: 600;
 }
 
 /* Interactive Mission Matrix Box */
@@ -1145,112 +1364,138 @@ html.js-motion .reveal.is-visible {
 .box.f .cap .b { display: inline; color: var(--dps-green); font-weight: 700; }
 
 /* ==========================================================================
-   05 2D Interactive Concept Physics Sandbox (The 8 Gravity Pillars)
+   05 Lightweight Interactive Concept Innovation Blueprints (The 8 Pillars)
    ========================================================================== */
-.sandbox-stage-grid {
+.blueprint-stage-grid {
   display: grid;
-  grid-template-columns: 1.6fr 1.4fr;
+  grid-template-columns: 1.15fr 1fr;
   gap: 28px;
-  align-items: start;
+  align-items: stretch;
 }
 
 @media (max-width: 960px) {
-  .sandbox-stage-grid { grid-template-columns: 1fr; }
+  .blueprint-stage-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.sandbox-canvas-card {
+.blueprint-selector-column {
   background: #FFFFFF;
   border: 1.5px solid var(--border-card);
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
 }
 
-.sandbox-toolbar {
+.blueprint-selector-header {
   background: #F9FAFB;
   border-bottom: 1px solid var(--border-card);
-  padding: 12px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.toolbar-left {
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.toolbar-dot.green {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #10B981;
+.blueprint-buttons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 18px;
+  flex: 1;
 }
 
-.toolbar-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  color: var(--dps-green);
+@media (max-width: 580px) {
+  .blueprint-buttons-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.toolbar-actions {
+.bp-pill-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.sandbox-action-btn {
-  background: #FFFFFF;
-  border: 1px solid var(--border-card);
-  color: var(--text-main);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 5px 12px;
+  gap: 12px;
+  background: #F9FAFB;
+  border: 1.5px solid var(--border-subtle);
   border-radius: 16px;
+  padding: 12px 14px;
+  text-align: left;
   cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  font-family: inherit;
+  width: 100%;
 }
 
-.sandbox-action-btn:hover {
-  background: var(--dps-light);
-  border-color: var(--dps-green);
+.bp-pill-btn:hover {
+  background: #FFFFFF;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px -6px rgba(12, 26, 43, 0.12);
+}
+
+.bp-pill-btn.active {
+  background: #FFFFFF;
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px -8px var(--accent), 0 0 0 2px var(--accent);
+}
+
+.bp-pill-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(15, 74, 42, 0.04);
+}
+
+.bp-pill-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.bp-pill-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-pill-btn.active .bp-pill-title {
   color: var(--dps-green);
 }
 
-.sandbox-action-btn.active {
-  background: var(--pastel-lavender-soft);
-  border-color: var(--pastel-lavender);
-  color: var(--pastel-lavender);
-}
-
-.canvas-wrap {
-  position: relative;
-  background: radial-gradient(circle at center, #FFFFFF 0%, #F8FAF7 100%);
-  width: 100%;
-}
-
-#physics-sandbox-canvas {
-  width: 100%;
-  height: 520px;
-  display: block;
-  touch-action: none;
-}
-
-.canvas-hint-overlay {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 11px;
+.bp-pill-tag {
+  font-size: 10.5px;
   font-weight: 600;
-  color: var(--text-light-sub);
-  pointer-events: none;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bp-pill-arrow {
+  font-size: 14px;
+  color: var(--text-muted);
+  opacity: 0.4;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  flex-shrink: 0;
+}
+
+.bp-pill-btn.active .bp-pill-arrow,
+.bp-pill-btn:hover .bp-pill-arrow {
+  opacity: 1;
+  color: var(--accent);
+  transform: translateX(3px);
 }
 
 /* Side Mission Card (Intel Dossier) */
@@ -2213,6 +2458,19 @@ html.js-motion .reveal.is-visible {
   gap: 12px;
 }
 
+.codlyn-link {
+  color: var(--dps-green);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.codlyn-link:hover {
+  color: #059669;
+  opacity: 0.85;
+}
+
 </style>
 <script src="matter.min.js"></script>
 <script>
@@ -2619,27 +2877,16 @@ html.js-motion .reveal.is-visible {
   }
 
   // ==========================================================================
-  // 4. 2D INTERACTIVE CONCEPT PHYSICS SANDBOX (The 8 Gravity Pillars)
+  // 4. LIGHTWEIGHT INTERACTIVE INNOVATION BLUEPRINTS (The 8 Pillars)
   // ==========================================================================
-  class PhysicsSandbox {
+  class InnovationBlueprintHub {
     constructor() {
-      this.canvas = document.getElementById('physics-sandbox-canvas');
-      if (!this.canvas) return;
-      this.ctx = this.canvas.getContext('2d');
-      this.container = this.canvas.parentElement;
+      this.buttons = document.querySelectorAll('.bp-pill-btn');
+      this.card = document.getElementById('sandbox-mission-card');
+      if (!this.buttons.length || !this.card) return;
 
-      this.zeroG = false;
-      this.gravity = 0.32;
-      this.friction = 0.985;
-      this.bounce = 0.72;
-
-      this.draggedNode = null;
-      this.mouse = { x: 0, y: 0, prevX: 0, prevY: 0, isDown: false };
-      this.hoveredNode = null;
-
-      this.MODULES = [
-        {
-          id: 'quantum-bio',
+      this.MODULES = {
+        'quantum-bio': {
           icon: '⚛️',
           label: 'Quantum Bio Lab',
           color: '#10B981',
@@ -2650,8 +2897,7 @@ html.js-motion .reveal.is-visible {
           teacher: 'Deepti Ma’am & Prableen Ma’am',
           align: 'Viksit Bharat 2047 Bio-Mission'
         },
-        {
-          id: 'robotics-arm',
+        'robotics-arm': {
           icon: '🤖',
           label: 'AI Robotics Cell',
           color: '#3B82F6',
@@ -2662,8 +2908,7 @@ html.js-motion .reveal.is-visible {
           teacher: 'Richa Ma’am',
           align: 'India AI Mission & Atal Innovation'
         },
-        {
-          id: 'isro-downlink',
+        'isro-downlink': {
           icon: '🚀',
           label: 'ISRO Moon Link',
           color: '#F59E0B',
@@ -2674,8 +2919,7 @@ html.js-motion .reveal.is-visible {
           teacher: 'Anuradha Ma’am',
           align: 'ISRO 2040 Manned Lunar Landing'
         },
-        {
-          id: 'solar-canopy',
+        'solar-canopy': {
           icon: '☀️',
           label: 'Zero-Carbon Campus',
           color: '#10B981',
@@ -2686,8 +2930,7 @@ html.js-motion .reveal.is-visible {
           teacher: 'Eco-Club Mentorship',
           align: 'Net-Zero India 2070 & Green Energy'
         },
-        {
-          id: 'ai-tutor',
+        'ai-tutor': {
           icon: '🧠',
           label: 'AI Mentor Co-Pilot',
           color: '#8B5CF6',
@@ -2698,8 +2941,7 @@ html.js-motion .reveal.is-visible {
           teacher: 'Richa Ma’am & Anuradha Ma’am',
           align: 'UN SDG 4: Quality Education'
         },
-        {
-          id: 'bagless-slate',
+        'bagless-slate': {
           icon: '🎒',
           label: '0kg Bagless Slate',
           color: '#EC4899',
@@ -2710,10 +2952,9 @@ html.js-motion .reveal.is-visible {
           teacher: 'Anuradha Ma’am',
           align: 'National Health Policy & Ergonomics'
         },
-        {
-          id: 'smart-sports',
-          icon: '🏃',
-          label: 'Kinematic Sports',
+        'smart-sports': {
+          icon: '🏃🏻‍♂️',
+          label: 'Kinematic Sports AI',
           color: '#06B6D4',
           bg: '#ECFEFF',
           problem: 'Teen athletic injuries often go undiagnosed until irreversible damage occurs.',
@@ -2722,8 +2963,7 @@ html.js-motion .reveal.is-visible {
           teacher: 'Usha Ma’am',
           align: 'Khelo India 2040 National Sports'
         },
-        {
-          id: 'clean-air',
+        'clean-air': {
           icon: '🍃',
           label: 'Delhi AQI Bio-Dome',
           color: '#059669',
@@ -2734,163 +2974,28 @@ html.js-motion .reveal.is-visible {
           teacher: 'School Administration & Doctors',
           align: 'National Clean Air Programme'
         }
-      ];
-
-      this.nodes = [];
-      this.initNodes();
-      this.resize();
-      this.bindEvents();
-
-      this.loop = this.loop.bind(this);
-      requestAnimationFrame(this.loop);
-    }
-
-    resize() {
-      this.dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = this.canvas.getBoundingClientRect();
-      this.width = Math.max(320, rect.width || this.canvas.clientWidth || 600);
-      this.height = Math.max(460, rect.height || this.canvas.clientHeight || 520);
-      this.canvas.style.height = `${this.height}px`;
-      this.canvas.width = Math.floor(this.width * this.dpr);
-      this.canvas.height = Math.floor(this.height * this.dpr);
-
-      this.nodes.forEach(n => {
-        if (this.width > n.r * 2) {
-          n.x = Math.max(n.r + 12, Math.min(this.width - n.r - 12, n.x));
-        }
-        if (this.height > n.r * 2 + 30) {
-          n.y = Math.max(n.r + 12, Math.min(this.height - n.r - 28, n.y));
-        }
-      });
-    }
-
-    initNodes() {
-      const isMobile = window.innerWidth < 768;
-      const baseR = isMobile ? 34 : 40;
-
-      this.nodes = this.MODULES.map((mod, i) => {
-        const col = i % 4;
-        const row = Math.floor(i / 4);
-        return {
-          ...mod,
-          x: 65 + col * 110 + (Math.random() * 20),
-          y: 75 + row * 120 + (Math.random() * 20),
-          vx: (Math.random() - 0.5) * 1.8,
-          vy: (Math.random() - 0.5) * 1.8,
-          r: baseR,
-          mass: baseR * 0.1
-        };
-      });
-    }
-
-    bindEvents() {
-      window.addEventListener('resize', () => this.resize(), { passive: true });
-
-      const getCanvasCoords = (e) => {
-        const rect = this.canvas.getBoundingClientRect();
-        return {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        };
       };
 
-      this.canvas.addEventListener('pointerdown', (e) => {
-        const { x, y } = getCanvasCoords(e);
-        this.mouse.x = x;
-        this.mouse.y = y;
-        this.mouse.prevX = x;
-        this.mouse.prevY = y;
-        this.mouse.isDown = true;
-
-        for (let i = this.nodes.length - 1; i >= 0; i--) {
-          const n = this.nodes[i];
-          const dx = x - n.x;
-          const dy = y - n.y;
-          if (dx * dx + dy * dy <= n.r * n.r) {
-            this.draggedNode = n;
-            n.vx = 0;
-            n.vy = 0;
-            this.selectModule(n);
-            audio.pop();
-            break;
-          }
-        }
-      });
-
-      window.addEventListener('pointermove', (e) => {
-        if (!this.canvas) return;
-        const rect = this.canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        this.mouse.prevX = this.mouse.x;
-        this.mouse.prevY = this.mouse.y;
-        this.mouse.x = x;
-        this.mouse.y = y;
-
-        if (this.draggedNode) {
-          this.draggedNode.x = x;
-          this.draggedNode.y = y;
-          this.draggedNode.vx = (x - this.mouse.prevX) * 0.8;
-          this.draggedNode.vy = (y - this.mouse.prevY) * 0.8;
-        } else if (x >= 0 && x <= this.width && y >= 0 && y <= this.height) {
-          let found = null;
-          for (let i = this.nodes.length - 1; i >= 0; i--) {
-            const n = this.nodes[i];
-            const dx = x - n.x;
-            const dy = y - n.y;
-            if (dx * dx + dy * dy <= n.r * n.r) {
-              found = n;
-              break;
-            }
-          }
-          if (found !== this.hoveredNode) {
-            this.hoveredNode = found;
-            this.canvas.style.cursor = found ? 'grab' : 'default';
-          }
-        }
-      }, { passive: true });
-
-      window.addEventListener('pointerup', () => {
-        if (this.draggedNode) {
-          this.draggedNode = null;
-        }
-        this.mouse.isDown = false;
-      });
-
-      const shakeBtn = document.getElementById('sandbox-btn-shake');
-      if (shakeBtn) {
-        shakeBtn.addEventListener('click', () => {
-          this.nodes.forEach(n => {
-            n.vx += (Math.random() - 0.5) * 16;
-            n.vy -= 8 + Math.random() * 10;
-          });
-          audio.chime(3, 0.14);
+      this.buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          this.selectModule(id);
         });
-      }
-
-      const zeroGBtn = document.getElementById('sandbox-btn-zerog');
-      if (zeroGBtn) {
-        zeroGBtn.addEventListener('click', () => {
-          this.zeroG = !this.zeroG;
-          zeroGBtn.classList.toggle('active', this.zeroG);
-          zeroGBtn.innerHTML = this.zeroG ? '<span>🌌</span> Zero-G: ON' : '<span>🌍</span> Gravity: ON';
-          if (this.zeroG) {
-            this.nodes.forEach(n => {
-              n.vx = (Math.random() - 0.5) * 4;
-              n.vy = (Math.random() - 0.5) * 4;
-            });
-          }
-          audio.chime(5, 0.12);
-        });
-      }
+      });
     }
 
-    selectModule(mod) {
-      const card = document.getElementById('sandbox-mission-card');
-      if (!card) return;
+    selectModule(id) {
+      const mod = this.MODULES[id];
+      if (!mod) return;
 
-      card.innerHTML = `
+      this.buttons.forEach(b => {
+        const isActive = b.getAttribute('data-id') === id;
+        b.classList.toggle('active', isActive);
+      });
+
+      if (window.soundFX) window.soundFX.chime();
+
+      this.card.innerHTML = `
         <div class="mission-card-header" style="border-left: 4px solid ${mod.color};">
           <span class="mission-card-icon">${mod.icon}</span>
           <div>
@@ -2921,153 +3026,9 @@ html.js-motion .reveal.is-visible {
         </div>
       `;
 
-      card.classList.remove('pulse-in');
-      void card.offsetWidth;
-      card.classList.add('pulse-in');
-    }
-
-    updatePhysics() {
-      const g = this.zeroG ? 0 : this.gravity;
-
-      for (let i = 0; i < this.nodes.length; i++) {
-        const n = this.nodes[i];
-        if (n === this.draggedNode) continue;
-
-        n.vy += g;
-        n.vx *= this.friction;
-        n.vy *= this.friction;
-
-        n.x += n.vx;
-        n.y += n.vy;
-
-        if (n.y + n.r + 26 > this.height) {
-          n.y = this.height - n.r - 26;
-          n.vy = -n.vy * this.bounce;
-        }
-        if (n.y - n.r < 0) {
-          n.y = n.r;
-          n.vy = -n.vy * this.bounce;
-        }
-        if (n.x - n.r < 0) {
-          n.x = n.r;
-          n.vx = -n.vx * this.bounce;
-        }
-        if (n.x + n.r > this.width) {
-          n.x = this.width - n.r;
-          n.vx = -n.vx * this.bounce;
-        }
-
-        for (let j = i + 1; j < this.nodes.length; j++) {
-          const b = this.nodes[j];
-          const dx = b.x - n.x;
-          const dy = b.y - n.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const minDist = n.r + b.r;
-
-          if (dist < minDist && dist > 0.001) {
-            const overlap = minDist - dist;
-            const nx = dx / dist;
-            const ny = dy / dist;
-
-            n.x -= nx * overlap * 0.5;
-            n.y -= ny * overlap * 0.5;
-            b.x += nx * overlap * 0.5;
-            b.y += ny * overlap * 0.5;
-
-            const kx = n.vx - b.vx;
-            const ky = n.vy - b.vy;
-            const p = 2 * (nx * kx + ny * ky) / (n.mass + b.mass);
-
-            n.vx -= p * b.mass * nx * this.bounce;
-            n.vy -= p * b.mass * ny * this.bounce;
-            b.vx += p * n.mass * nx * this.bounce;
-            b.vy += p * n.mass * ny * this.bounce;
-          }
-        }
-      }
-    }
-
-    draw() {
-      this.ctx.save();
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      const dpr = this.dpr || 1;
-      this.ctx.scale(dpr, dpr);
-
-      // Subtle constellation lines
-      for (let i = 0; i < this.nodes.length; i++) {
-        for (let j = i + 1; j < this.nodes.length; j++) {
-          const a = this.nodes[i];
-          const b = this.nodes[j];
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 180) {
-            const alpha = (1 - dist / 180) * 0.35;
-            this.ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
-            this.ctx.lineWidth = 1.2;
-            this.ctx.setLineDash([4, 4]);
-            this.ctx.beginPath();
-            this.ctx.moveTo(a.x, a.y);
-            this.ctx.lineTo(b.x, b.y);
-            this.ctx.stroke();
-          }
-        }
-      }
-
-      this.nodes.forEach(n => {
-        const isHovered = n === this.hoveredNode || n === this.draggedNode;
-        const currentR = isHovered ? n.r + 4 : n.r;
-
-        this.ctx.save();
-
-        this.ctx.shadowColor = n.color;
-        this.ctx.shadowBlur = isHovered ? 24 : 10;
-        this.ctx.shadowOffsetX = 0;
-        this.ctx.shadowOffsetY = 6;
-
-        const grad = this.ctx.createRadialGradient(
-          n.x - currentR * 0.3,
-          n.y - currentR * 0.3,
-          currentR * 0.1,
-          n.x,
-          n.y,
-          currentR
-        );
-        grad.addColorStop(0, '#FFFFFF');
-        grad.addColorStop(0.7, n.bg);
-        grad.addColorStop(1, '#FFFFFF');
-
-        this.ctx.fillStyle = grad;
-        this.ctx.beginPath();
-        this.ctx.arc(n.x, n.y, currentR, 0, Math.PI * 2);
-        this.ctx.fill();
-
-        this.ctx.shadowBlur = 0;
-        this.ctx.strokeStyle = n.color;
-        this.ctx.lineWidth = isHovered ? 3 : 1.8;
-        this.ctx.stroke();
-
-        this.ctx.font = `${Math.round(currentR * 0.65)}px "Apple Color Emoji", "Segoe UI Emoji", sans-serif`;
-        this.ctx.textAlign = 'center';
-        this.ctx.textBaseline = 'middle';
-        this.ctx.fillText(n.icon, n.x, n.y - 4);
-
-        this.ctx.font = '600 11px Outfit, sans-serif';
-        this.ctx.fillStyle = '#111827';
-        this.ctx.textAlign = 'center';
-        this.ctx.textBaseline = 'top';
-        this.ctx.fillText(n.label, n.x, n.y + currentR * 0.42);
-
-        this.ctx.restore();
-      });
-
-      this.ctx.restore();
-    }
-
-    loop() {
-      this.updatePhysics();
-      this.draw();
-      requestAnimationFrame(this.loop);
+      this.card.classList.remove('pulse-in');
+      void this.card.offsetWidth;
+      this.card.classList.add('pulse-in');
     }
   }
 
@@ -3149,10 +3110,7 @@ html.js-motion .reveal.is-visible {
         progressBar.style.transform = `scaleX(${maxScroll > 0 ? y / maxScroll : 0})`;
       }
 
-      // Marquee strip translation
-      if (strip) {
-        strip.style.transform = `translate3d(${-y * 0.45}px, 0, 0)`;
-      }
+      // Marquee strip translation: now pure infinite GPU marquee in CSS
 
       // Manifesto word-by-word reveal
       if (man && words.length > 0) {
@@ -3298,7 +3256,7 @@ html.js-motion .reveal.is-visible {
     setupDoodlesAndManifesto();
     new PencilDoodleTrail();
     initMatterGravityChamber();
-    new PhysicsSandbox();
+    new InnovationBlueprintHub();
     initScrollController();
     initMissionTabs();
     initComparisonSliders();
@@ -3445,7 +3403,7 @@ html.js-motion .reveal.is-visible {
       </div>
     </div>
 
-    <!-- Horizontal Continuous Activity Marquee Strip -->
+    <!-- Horizontal Continuous Activity Marquee Strip (Infinite Auto-Glide) -->
     <div class="strip-wrap reveal" aria-label="School activities preview strip">
       <div class="strip" id="strip">
         <i style="background-image: url('assets/photos/swimming.jpg');" title="Swimming Pool"></i>
@@ -3458,29 +3416,49 @@ html.js-motion .reveal.is-visible {
         <i style="background-image: url('assets/photos/shooting.jpg');" title="Shooting Range"></i>
         <i style="background-image: url('assets/photos/tabletennis.jpg');" title="Table Tennis"></i>
         <i style="background-image: url('assets/photos/cricket.jpg');" title="Cricket Oval & Electric Bus Bay"></i>
+        <!-- Duplicate set for seamless continuous marquee loop -->
+        <i style="background-image: url('assets/photos/swimming.jpg');" title="Swimming Pool" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/dance.jpg');" title="Dance & Arts" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/gym.jpg');" title="Fitness Arena" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/tennis.jpg');" title="Tennis Courts" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/chess.jpg');" title="Chess Academy" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/basketball.jpg');" title="Basketball Arena" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/volleyball.jpg');" title="Volleyball Court" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/shooting.jpg');" title="Shooting Range" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/tabletennis.jpg');" title="Table Tennis" aria-hidden="true"></i>
+        <i style="background-image: url('assets/photos/cricket.jpg');" title="Cricket Oval & Electric Bus Bay" aria-hidden="true"></i>
       </div>
     </div>
 
-    <!-- 4 High-Impact Strategic Numbers -->
+    <!-- 4 High-Impact Strategic Numbers (Cleanly Aligned Grid) -->
     <div class="campus-pills-bar reveal">
       <div class="pill-item">
         <span class="pill-num">0.0 kg</span>
-        <div><strong>Zero Backpack Load</strong><p>Single featherweight AR Slate replaces all books</p></div>
+        <div class="pill-text-wrap">
+          <strong>Zero Backpack Load</strong>
+          <p>Single featherweight AR Slate replaces all books</p>
+        </div>
       </div>
-      <div class="pill-divider"></div>
       <div class="pill-item">
-        <span class="pill-num">< 20 AQI</span>
-        <div><strong>Delhi Clean-Air Dome</strong><p>H13 HEPA positive pressure throughout campus</p></div>
+        <span class="pill-num">&lt; 20 AQI</span>
+        <div class="pill-text-wrap">
+          <strong>Delhi Clean-Air Dome</strong>
+          <p>H13 HEPA positive pressure throughout campus</p>
+        </div>
       </div>
-      <div class="pill-divider"></div>
       <div class="pill-item">
         <span class="pill-num">140%</span>
-        <div><strong>Solar Self-Sufficiency</strong><p>Bifacial canopies power labs & export green power</p></div>
+        <div class="pill-text-wrap">
+          <strong>Solar Self-Sufficiency</strong>
+          <p>Bifacial canopies power labs &amp; export green power</p>
+        </div>
       </div>
-      <div class="pill-divider"></div>
       <div class="pill-item">
-        <span class="pill-num">1 : 1</span>
-        <div><strong>AI Mentor Co-Pilot</strong><p>Personalized pacing; zero rote memorization stress</p></div>
+        <span class="pill-num">1:1</span>
+        <div class="pill-text-wrap">
+          <strong>AI Mentor Co-Pilot</strong>
+          <p>Personalized pacing; zero rote memorization stress</p>
+        </div>
       </div>
     </div>
   </section>
@@ -3510,49 +3488,94 @@ html.js-motion .reveal.is-visible {
 
     <!-- 4 Sticky Stacked Cards -->
     <div class="why-stack" id="cards">
+      <!-- Card 1 -->
       <article class="cd" style="--i:0; --c:#0e7c4a;">
+        <svg class="cd-doodle" viewBox="0 0 50 50" aria-hidden="true">
+          <circle cx="25" cy="25" r="18" fill="none" stroke="#0e7c4a" stroke-width="2.5" stroke-dasharray="4 3" opacity="0.8"/>
+          <path d="M25 12 L25 25 L34 25" fill="none" stroke="#0e7c4a" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 01</span>
           <h3>The students are the 2040 workforce</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-pill-row">
+            <span class="cd-mini-pill">Class 7 (Age 12 in 2026) ➔ Age 26 in 2040</span>
+            <span class="cd-highlight-tag">National Workforce Ready</span>
+          </div>
           <p>A Class 6 or 7 student at DPS Mathura Road today will be in their mid-20s in 2040. What we learn right now decides whether India's scientific, economic, and diplomatic plans are carried out by people who are truly ready for them.</p>
         </div>
       </article>
 
+      <!-- Card 2 -->
       <article class="cd" style="--i:1; --c:#2554e8;">
+        <!-- Hand-drawn curved arrow doodle matching Claude screenshot 2 -->
+        <svg class="cd-doodle" viewBox="0 0 60 50" aria-hidden="true">
+          <path d="M12 40 C 22 10, 48 10, 52 26" fill="none" stroke="#2554e8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M42 22 L 52 26 L 49 36" fill="none" stroke="#2554e8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 02</span>
           <h3>India has set its own deadlines</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-milestone-chips">
+            <span class="m-chip"><b>2030</b> NEP Foundational</span>
+            <span class="m-chip"><b>2035</b> Space Station</span>
+            <span class="m-chip"><b>2040</b> Moon Landing</span>
+            <span class="m-chip"><b>2047</b> Viksit Bharat</span>
+          </div>
           <p>Universal quality schooling by 2030 (NEP 2020), Bharatiya Antariksh Station by 2035, an Indian astronaut on the Moon by 2040, and a developed nation by 2047 (Viksit Bharat). A school that stays stuck in the 1990s becomes a national bottleneck.</p>
         </div>
       </article>
 
+      <!-- Card 3 -->
       <article class="cd" style="--i:2; --c:#c77700;">
+        <!-- Hand-drawn 5-point star doodle matching Claude screenshot 2 -->
+        <svg class="cd-doodle" viewBox="0 0 50 50" aria-hidden="true">
+          <path d="M 25 4 L 30 18 L 45 19 L 33 29 L 37 44 L 25 35 L 13 44 L 17 29 L 5 19 L 20 18 Z" fill="none" stroke="#c77700" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 03</span>
           <h3>Learning itself is changing forever</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-dual-role">
+            <div class="role-pill ai"><span>🤖 AI Routine Support:</span> Fact recall, grading papers, schedules</div>
+            <div class="role-pill teacher"><span>❤️ Teacher Priority:</span> Empathy, wisdom, character & mentorship</div>
+          </div>
           <p>Generative AI will automate routine fact recall and basic code. Schools must teach students how to question, synthesize, and build original things—freeing our brilliant teachers to mentor hearts instead of grading paper.</p>
         </div>
       </article>
 
+      <!-- Card 4 -->
       <article class="cd" style="--i:3; --c:#5b3fb8;">
+        <!-- Hand-drawn curved bracket doodle matching Claude screenshot 2 -->
+        <svg class="cd-doodle" viewBox="0 0 50 50" aria-hidden="true">
+          <path d="M 12 40 C 24 38, 38 28, 40 10" fill="none" stroke="#5b3fb8" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M 28 12 L 40 10 L 40 22" fill="none" stroke="#5b3fb8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
         <div>
           <span class="badge-tag">REASON 04</span>
           <h3>The campus must carry less</h3>
         </div>
-        <div>
+        <div class="cd-visual">
+          <div class="cd-metrics-bar">
+            <div class="metric-item"><span class="m-num">0.0 kg</span><span class="m-lbl">Physical Bag Weight</span></div>
+            <div class="metric-item"><span class="m-num">100%</span><span class="m-lbl">Clean Solar Energy</span></div>
+            <div class="metric-item"><span class="m-num">Zero</span><span class="m-lbl">Paper Deforestation</span></div>
+          </div>
           <p>12kg backpacks, paper deforestation, and manual administrative routines cost health, time, and money. A net-zero India by 2070 begins with schools that prove zero-waste, solar-first living is possible today.</p>
         </div>
       </article>
     </div>
+  </section>
 
-    <!-- Interactive Mission Matrix Tabs -->
-    <div class="matrix-box reveal" style="margin-top: 48px;">
+  <!-- =========================================================================
+       03B INTERACTIVE MISSION MATRIX TABS
+       ========================================================================= -->
+  <section class="mission-matrix-section">
+    <div class="matrix-box reveal" style="margin-top: 0;">
       <div class="matrix-tabs-header">
         <span class="matrix-title">EXPLORE THE 4 MISSION STRATEGIES:</span>
         <div class="matrix-nav">
@@ -3668,47 +3691,106 @@ html.js-motion .reveal.is-visible {
   </section>
 
   <!-- =========================================================================
-       05 INTERACTIVE 2040 CONCEPT PHYSICS SANDBOX
+       05 INTERACTIVE 2040 CONCEPT INNOVATION BLUEPRINTS (LIGHTWEIGHT EXPLORER)
        ========================================================================= -->
-  <section id="physics-sandbox" class="sandbox-section section-pad" data-chapter="Physics Sandbox">
+  <section id="physics-sandbox" class="blueprint-section section-pad" data-chapter="Innovation Blueprints">
     <div class="section-container">
       <div class="section-header reveal">
         <div class="section-tag-row">
-          <span class="badge-tag">INTERACTIVE GRAVITY PLAYGROUND</span>
-          <span class="teacher-spark-badge">TOUCH · DRAG · BOUNCE · EXPLORE</span>
+          <span class="badge-tag">INTERACTIVE MISSION BLUEPRINTS</span>
+          <span class="teacher-spark-badge">LIGHTWEIGHT · INTERACTIVE · 8 PILLARS</span>
         </div>
-        <h2>The 8 Gravity Pillars of <span class="serif green">Vision 2040</span></h2>
+        <h2>The 8 Core Pillars of <span class="serif green">Vision 2040</span></h2>
         <p class="section-sub">
-          Drag and fling the concept orbs around the physics sandbox! Watch them bounce and collide. Click or hover any sphere to inspect its technical blueprint, the "Why We Need It" rationale, and national alignment.
+          Click any innovation below to inspect its technical blueprint, today's real classroom bottleneck, the 2040 smart solution, and its direct alignment with India's national missions.
         </p>
       </div>
 
-      <div class="sandbox-stage-grid reveal">
-        <div class="sandbox-canvas-card">
-          <div class="sandbox-toolbar">
-            <div class="toolbar-left">
-              <span class="toolbar-dot green"></span>
-              <span class="toolbar-title">2040 MISSION PHYSICS ENGINE</span>
-            </div>
-            <div class="toolbar-actions">
-              <button id="sandbox-btn-shake" class="sandbox-action-btn">
-                <span>💥</span> Shake Sandbox
-              </button>
-              <button id="sandbox-btn-zerog" class="sandbox-action-btn">
-                <span>🌌</span> Zero-G: OFF
-              </button>
-            </div>
+      <div class="blueprint-stage-grid reveal">
+        <!-- Left: 8 Interactive Innovation Selector Cards -->
+        <div class="blueprint-selector-column">
+          <div class="blueprint-selector-header">
+            <span class="toolbar-dot green"></span>
+            <span class="toolbar-title">SELECT A PILLAR TO INSPECT BLUEPRINT:</span>
           </div>
           
-          <div class="canvas-wrap">
-            <canvas id="physics-sandbox-canvas"></canvas>
-            <div class="canvas-hint-overlay">
-              <span>✦ Grab & throw any orb with your mouse · Click to inspect blueprint ✦</span>
-            </div>
+          <div class="blueprint-buttons-grid" id="blueprint-buttons-grid">
+            <button class="bp-pill-btn active" data-id="quantum-bio" style="--accent: #10B981;">
+              <span class="bp-pill-icon">⚛️</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Quantum Bio Lab</span>
+                <span class="bp-pill-tag">Viksit Bharat 2047</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="robotics-arm" style="--accent: #3B82F6;">
+              <span class="bp-pill-icon">🤖</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">AI Robotics Cell</span>
+                <span class="bp-pill-tag">Atal Innovation Mission</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="isro-downlink" style="--accent: #F59E0B;">
+              <span class="bp-pill-icon">🚀</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">ISRO Moon Link</span>
+                <span class="bp-pill-tag">ISRO 2040 Mission</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="solar-canopy" style="--accent: #10B981;">
+              <span class="bp-pill-icon">☀️</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Zero-Carbon Campus</span>
+                <span class="bp-pill-tag">Net-Zero 2070</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="ai-tutor" style="--accent: #8B5CF6;">
+              <span class="bp-pill-icon">🧠</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">AI Mentor Co-Pilot</span>
+                <span class="bp-pill-tag">UN SDG 4 Education</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="bagless-slate" style="--accent: #EC4899;">
+              <span class="bp-pill-icon">🎒</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">0kg Bagless Slate</span>
+                <span class="bp-pill-tag">Health &amp; Ergonomics</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="smart-sports" style="--accent: #06B6D4;">
+              <span class="bp-pill-icon">🏃🏻‍♂️</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Kinematic Sports AI</span>
+                <span class="bp-pill-tag">Khelo India 2040</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
+
+            <button class="bp-pill-btn" data-id="clean-air" style="--accent: #059669;">
+              <span class="bp-pill-icon">🍃</span>
+              <div class="bp-pill-meta">
+                <span class="bp-pill-title">Delhi AQI Bio-Dome</span>
+                <span class="bp-pill-tag">Clean Air Programme</span>
+              </div>
+              <span class="bp-pill-arrow">→</span>
+            </button>
           </div>
         </div>
 
-        <div class="sandbox-intel-column">
+        <!-- Right: Active Technical Blueprint Intel Card -->
+        <div class="blueprint-intel-column">
           <div id="sandbox-mission-card" class="mission-card">
             <div class="mission-card-header" style="border-left: 4px solid #10B981;">
               <span class="mission-card-icon">⚛️</span>
@@ -3726,7 +3808,7 @@ html.js-motion .reveal.is-visible {
               
               <div class="mission-intel-row">
                 <span class="intel-label">✨ 2040 SOLUTION</span>
-                <p class="intel-text"><strong>CRISPR molecular simulations & 8K digital electron microscopy.</strong></p>
+                <p class="intel-text"><strong>CRISPR molecular simulations &amp; 8K digital electron microscopy.</strong></p>
               </div>
               
               <div class="mission-intel-row">
@@ -3735,7 +3817,7 @@ html.js-motion .reveal.is-visible {
               </div>
               
               <div class="mission-intel-footer">
-                <span class="intel-teacher">👩🏻‍🏫 Spark: <strong>Deepti Ma’am & Prableen Ma’am</strong></span>
+                <span class="intel-teacher">👩🏻‍🏫 Spark: <strong>Deepti Ma’am &amp; Prableen Ma’am</strong></span>
               </div>
             </div>
           </div>
@@ -4399,7 +4481,7 @@ html.js-motion .reveal.is-visible {
 
   <div class="footer-bottom">
     <span>© 2026 DPS Mathura Road · Academic Project Submission by Manini Sharma (Class 7-C)</span>
-    <span class="footer-heart">100% Scroll-Driven · Matter.js Physics & Concept Sandbox Enabled</span>
+    <span class="footer-credit">Assistance with ❤️ by <a href="https://codlynsoft.com" target="_blank" rel="noopener noreferrer" class="codlyn-link">Codlyn Softwares</a></span>
   </div>
 </footer>
 

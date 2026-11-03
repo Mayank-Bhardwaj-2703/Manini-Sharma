@@ -401,27 +401,16 @@
   }
 
   // ==========================================================================
-  // 4. 2D INTERACTIVE CONCEPT PHYSICS SANDBOX (The 8 Gravity Pillars)
+  // 4. LIGHTWEIGHT INTERACTIVE INNOVATION BLUEPRINTS (The 8 Pillars)
   // ==========================================================================
-  class PhysicsSandbox {
+  class InnovationBlueprintHub {
     constructor() {
-      this.canvas = document.getElementById('physics-sandbox-canvas');
-      if (!this.canvas) return;
-      this.ctx = this.canvas.getContext('2d');
-      this.container = this.canvas.parentElement;
+      this.buttons = document.querySelectorAll('.bp-pill-btn');
+      this.card = document.getElementById('sandbox-mission-card');
+      if (!this.buttons.length || !this.card) return;
 
-      this.zeroG = false;
-      this.gravity = 0.32;
-      this.friction = 0.985;
-      this.bounce = 0.72;
-
-      this.draggedNode = null;
-      this.mouse = { x: 0, y: 0, prevX: 0, prevY: 0, isDown: false };
-      this.hoveredNode = null;
-
-      this.MODULES = [
-        {
-          id: 'quantum-bio',
+      this.MODULES = {
+        'quantum-bio': {
           icon: '⚛️',
           label: 'Quantum Bio Lab',
           color: '#10B981',
@@ -432,8 +421,7 @@
           teacher: 'Deepti Ma’am & Prableen Ma’am',
           align: 'Viksit Bharat 2047 Bio-Mission'
         },
-        {
-          id: 'robotics-arm',
+        'robotics-arm': {
           icon: '🤖',
           label: 'AI Robotics Cell',
           color: '#3B82F6',
@@ -444,8 +432,7 @@
           teacher: 'Richa Ma’am',
           align: 'India AI Mission & Atal Innovation'
         },
-        {
-          id: 'isro-downlink',
+        'isro-downlink': {
           icon: '🚀',
           label: 'ISRO Moon Link',
           color: '#F59E0B',
@@ -456,8 +443,7 @@
           teacher: 'Anuradha Ma’am',
           align: 'ISRO 2040 Manned Lunar Landing'
         },
-        {
-          id: 'solar-canopy',
+        'solar-canopy': {
           icon: '☀️',
           label: 'Zero-Carbon Campus',
           color: '#10B981',
@@ -468,8 +454,7 @@
           teacher: 'Eco-Club Mentorship',
           align: 'Net-Zero India 2070 & Green Energy'
         },
-        {
-          id: 'ai-tutor',
+        'ai-tutor': {
           icon: '🧠',
           label: 'AI Mentor Co-Pilot',
           color: '#8B5CF6',
@@ -480,8 +465,7 @@
           teacher: 'Richa Ma’am & Anuradha Ma’am',
           align: 'UN SDG 4: Quality Education'
         },
-        {
-          id: 'bagless-slate',
+        'bagless-slate': {
           icon: '🎒',
           label: '0kg Bagless Slate',
           color: '#EC4899',
@@ -492,10 +476,9 @@
           teacher: 'Anuradha Ma’am',
           align: 'National Health Policy & Ergonomics'
         },
-        {
-          id: 'smart-sports',
-          icon: '🏃',
-          label: 'Kinematic Sports',
+        'smart-sports': {
+          icon: '🏃🏻‍♂️',
+          label: 'Kinematic Sports AI',
           color: '#06B6D4',
           bg: '#ECFEFF',
           problem: 'Teen athletic injuries often go undiagnosed until irreversible damage occurs.',
@@ -504,8 +487,7 @@
           teacher: 'Usha Ma’am',
           align: 'Khelo India 2040 National Sports'
         },
-        {
-          id: 'clean-air',
+        'clean-air': {
           icon: '🍃',
           label: 'Delhi AQI Bio-Dome',
           color: '#059669',
@@ -516,163 +498,28 @@
           teacher: 'School Administration & Doctors',
           align: 'National Clean Air Programme'
         }
-      ];
-
-      this.nodes = [];
-      this.initNodes();
-      this.resize();
-      this.bindEvents();
-
-      this.loop = this.loop.bind(this);
-      requestAnimationFrame(this.loop);
-    }
-
-    resize() {
-      this.dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = this.canvas.getBoundingClientRect();
-      this.width = Math.max(320, rect.width || this.canvas.clientWidth || 600);
-      this.height = Math.max(460, rect.height || this.canvas.clientHeight || 520);
-      this.canvas.style.height = `${this.height}px`;
-      this.canvas.width = Math.floor(this.width * this.dpr);
-      this.canvas.height = Math.floor(this.height * this.dpr);
-
-      this.nodes.forEach(n => {
-        if (this.width > n.r * 2) {
-          n.x = Math.max(n.r + 12, Math.min(this.width - n.r - 12, n.x));
-        }
-        if (this.height > n.r * 2 + 30) {
-          n.y = Math.max(n.r + 12, Math.min(this.height - n.r - 28, n.y));
-        }
-      });
-    }
-
-    initNodes() {
-      const isMobile = window.innerWidth < 768;
-      const baseR = isMobile ? 34 : 40;
-
-      this.nodes = this.MODULES.map((mod, i) => {
-        const col = i % 4;
-        const row = Math.floor(i / 4);
-        return {
-          ...mod,
-          x: 65 + col * 110 + (Math.random() * 20),
-          y: 75 + row * 120 + (Math.random() * 20),
-          vx: (Math.random() - 0.5) * 1.8,
-          vy: (Math.random() - 0.5) * 1.8,
-          r: baseR,
-          mass: baseR * 0.1
-        };
-      });
-    }
-
-    bindEvents() {
-      window.addEventListener('resize', () => this.resize(), { passive: true });
-
-      const getCanvasCoords = (e) => {
-        const rect = this.canvas.getBoundingClientRect();
-        return {
-          x: e.clientX - rect.left,
-          y: e.clientY - rect.top
-        };
       };
 
-      this.canvas.addEventListener('pointerdown', (e) => {
-        const { x, y } = getCanvasCoords(e);
-        this.mouse.x = x;
-        this.mouse.y = y;
-        this.mouse.prevX = x;
-        this.mouse.prevY = y;
-        this.mouse.isDown = true;
-
-        for (let i = this.nodes.length - 1; i >= 0; i--) {
-          const n = this.nodes[i];
-          const dx = x - n.x;
-          const dy = y - n.y;
-          if (dx * dx + dy * dy <= n.r * n.r) {
-            this.draggedNode = n;
-            n.vx = 0;
-            n.vy = 0;
-            this.selectModule(n);
-            audio.pop();
-            break;
-          }
-        }
-      });
-
-      window.addEventListener('pointermove', (e) => {
-        if (!this.canvas) return;
-        const rect = this.canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        this.mouse.prevX = this.mouse.x;
-        this.mouse.prevY = this.mouse.y;
-        this.mouse.x = x;
-        this.mouse.y = y;
-
-        if (this.draggedNode) {
-          this.draggedNode.x = x;
-          this.draggedNode.y = y;
-          this.draggedNode.vx = (x - this.mouse.prevX) * 0.8;
-          this.draggedNode.vy = (y - this.mouse.prevY) * 0.8;
-        } else if (x >= 0 && x <= this.width && y >= 0 && y <= this.height) {
-          let found = null;
-          for (let i = this.nodes.length - 1; i >= 0; i--) {
-            const n = this.nodes[i];
-            const dx = x - n.x;
-            const dy = y - n.y;
-            if (dx * dx + dy * dy <= n.r * n.r) {
-              found = n;
-              break;
-            }
-          }
-          if (found !== this.hoveredNode) {
-            this.hoveredNode = found;
-            this.canvas.style.cursor = found ? 'grab' : 'default';
-          }
-        }
-      }, { passive: true });
-
-      window.addEventListener('pointerup', () => {
-        if (this.draggedNode) {
-          this.draggedNode = null;
-        }
-        this.mouse.isDown = false;
-      });
-
-      const shakeBtn = document.getElementById('sandbox-btn-shake');
-      if (shakeBtn) {
-        shakeBtn.addEventListener('click', () => {
-          this.nodes.forEach(n => {
-            n.vx += (Math.random() - 0.5) * 16;
-            n.vy -= 8 + Math.random() * 10;
-          });
-          audio.chime(3, 0.14);
+      this.buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          this.selectModule(id);
         });
-      }
-
-      const zeroGBtn = document.getElementById('sandbox-btn-zerog');
-      if (zeroGBtn) {
-        zeroGBtn.addEventListener('click', () => {
-          this.zeroG = !this.zeroG;
-          zeroGBtn.classList.toggle('active', this.zeroG);
-          zeroGBtn.innerHTML = this.zeroG ? '<span>🌌</span> Zero-G: ON' : '<span>🌍</span> Gravity: ON';
-          if (this.zeroG) {
-            this.nodes.forEach(n => {
-              n.vx = (Math.random() - 0.5) * 4;
-              n.vy = (Math.random() - 0.5) * 4;
-            });
-          }
-          audio.chime(5, 0.12);
-        });
-      }
+      });
     }
 
-    selectModule(mod) {
-      const card = document.getElementById('sandbox-mission-card');
-      if (!card) return;
+    selectModule(id) {
+      const mod = this.MODULES[id];
+      if (!mod) return;
 
-      card.innerHTML = `
+      this.buttons.forEach(b => {
+        const isActive = b.getAttribute('data-id') === id;
+        b.classList.toggle('active', isActive);
+      });
+
+      if (window.soundFX) window.soundFX.chime();
+
+      this.card.innerHTML = `
         <div class="mission-card-header" style="border-left: 4px solid ${mod.color};">
           <span class="mission-card-icon">${mod.icon}</span>
           <div>
@@ -703,153 +550,9 @@
         </div>
       `;
 
-      card.classList.remove('pulse-in');
-      void card.offsetWidth;
-      card.classList.add('pulse-in');
-    }
-
-    updatePhysics() {
-      const g = this.zeroG ? 0 : this.gravity;
-
-      for (let i = 0; i < this.nodes.length; i++) {
-        const n = this.nodes[i];
-        if (n === this.draggedNode) continue;
-
-        n.vy += g;
-        n.vx *= this.friction;
-        n.vy *= this.friction;
-
-        n.x += n.vx;
-        n.y += n.vy;
-
-        if (n.y + n.r + 26 > this.height) {
-          n.y = this.height - n.r - 26;
-          n.vy = -n.vy * this.bounce;
-        }
-        if (n.y - n.r < 0) {
-          n.y = n.r;
-          n.vy = -n.vy * this.bounce;
-        }
-        if (n.x - n.r < 0) {
-          n.x = n.r;
-          n.vx = -n.vx * this.bounce;
-        }
-        if (n.x + n.r > this.width) {
-          n.x = this.width - n.r;
-          n.vx = -n.vx * this.bounce;
-        }
-
-        for (let j = i + 1; j < this.nodes.length; j++) {
-          const b = this.nodes[j];
-          const dx = b.x - n.x;
-          const dy = b.y - n.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          const minDist = n.r + b.r;
-
-          if (dist < minDist && dist > 0.001) {
-            const overlap = minDist - dist;
-            const nx = dx / dist;
-            const ny = dy / dist;
-
-            n.x -= nx * overlap * 0.5;
-            n.y -= ny * overlap * 0.5;
-            b.x += nx * overlap * 0.5;
-            b.y += ny * overlap * 0.5;
-
-            const kx = n.vx - b.vx;
-            const ky = n.vy - b.vy;
-            const p = 2 * (nx * kx + ny * ky) / (n.mass + b.mass);
-
-            n.vx -= p * b.mass * nx * this.bounce;
-            n.vy -= p * b.mass * ny * this.bounce;
-            b.vx += p * n.mass * nx * this.bounce;
-            b.vy += p * n.mass * ny * this.bounce;
-          }
-        }
-      }
-    }
-
-    draw() {
-      this.ctx.save();
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      const dpr = this.dpr || 1;
-      this.ctx.scale(dpr, dpr);
-
-      // Subtle constellation lines
-      for (let i = 0; i < this.nodes.length; i++) {
-        for (let j = i + 1; j < this.nodes.length; j++) {
-          const a = this.nodes[i];
-          const b = this.nodes[j];
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 180) {
-            const alpha = (1 - dist / 180) * 0.35;
-            this.ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
-            this.ctx.lineWidth = 1.2;
-            this.ctx.setLineDash([4, 4]);
-            this.ctx.beginPath();
-            this.ctx.moveTo(a.x, a.y);
-            this.ctx.lineTo(b.x, b.y);
-            this.ctx.stroke();
-          }
-        }
-      }
-
-      this.nodes.forEach(n => {
-        const isHovered = n === this.hoveredNode || n === this.draggedNode;
-        const currentR = isHovered ? n.r + 4 : n.r;
-
-        this.ctx.save();
-
-        this.ctx.shadowColor = n.color;
-        this.ctx.shadowBlur = isHovered ? 24 : 10;
-        this.ctx.shadowOffsetX = 0;
-        this.ctx.shadowOffsetY = 6;
-
-        const grad = this.ctx.createRadialGradient(
-          n.x - currentR * 0.3,
-          n.y - currentR * 0.3,
-          currentR * 0.1,
-          n.x,
-          n.y,
-          currentR
-        );
-        grad.addColorStop(0, '#FFFFFF');
-        grad.addColorStop(0.7, n.bg);
-        grad.addColorStop(1, '#FFFFFF');
-
-        this.ctx.fillStyle = grad;
-        this.ctx.beginPath();
-        this.ctx.arc(n.x, n.y, currentR, 0, Math.PI * 2);
-        this.ctx.fill();
-
-        this.ctx.shadowBlur = 0;
-        this.ctx.strokeStyle = n.color;
-        this.ctx.lineWidth = isHovered ? 3 : 1.8;
-        this.ctx.stroke();
-
-        this.ctx.font = `${Math.round(currentR * 0.65)}px "Apple Color Emoji", "Segoe UI Emoji", sans-serif`;
-        this.ctx.textAlign = 'center';
-        this.ctx.textBaseline = 'middle';
-        this.ctx.fillText(n.icon, n.x, n.y - 4);
-
-        this.ctx.font = '600 11px Outfit, sans-serif';
-        this.ctx.fillStyle = '#111827';
-        this.ctx.textAlign = 'center';
-        this.ctx.textBaseline = 'top';
-        this.ctx.fillText(n.label, n.x, n.y + currentR * 0.42);
-
-        this.ctx.restore();
-      });
-
-      this.ctx.restore();
-    }
-
-    loop() {
-      this.updatePhysics();
-      this.draw();
-      requestAnimationFrame(this.loop);
+      this.card.classList.remove('pulse-in');
+      void this.card.offsetWidth;
+      this.card.classList.add('pulse-in');
     }
   }
 
@@ -931,10 +634,7 @@
         progressBar.style.transform = `scaleX(${maxScroll > 0 ? y / maxScroll : 0})`;
       }
 
-      // Marquee strip translation
-      if (strip) {
-        strip.style.transform = `translate3d(${-y * 0.45}px, 0, 0)`;
-      }
+      // Marquee strip translation: now pure infinite GPU marquee in CSS
 
       // Manifesto word-by-word reveal
       if (man && words.length > 0) {
@@ -1080,7 +780,7 @@
     setupDoodlesAndManifesto();
     new PencilDoodleTrail();
     initMatterGravityChamber();
-    new PhysicsSandbox();
+    new InnovationBlueprintHub();
     initScrollController();
     initMissionTabs();
     initComparisonSliders();
