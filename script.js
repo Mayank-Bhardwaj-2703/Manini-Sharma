@@ -1043,6 +1043,8 @@
       const handle = slider.querySelector('.wipe-handle');
       if (!afterWrap || !handle) return;
 
+      let lastPct = 50;
+
       const setPosition = (clientX) => {
         const rect = slider.getBoundingClientRect();
         const offsetX = Math.max(0, Math.min(rect.width, clientX - rect.left));
@@ -1050,7 +1052,20 @@
 
         afterWrap.style.clipPath = `inset(0 0 0 ${pct}%)`;
         handle.style.left = `${pct}%`;
+
+        // Subtle chime when passing midpoint
+        if ((lastPct < 50 && pct >= 50) || (lastPct > 50 && pct <= 50)) {
+          audio.chime(4, 0.08);
+        }
+        lastPct = pct;
       };
+
+      slider.addEventListener('pointerdown', (e) => {
+        if (slider.setPointerCapture) {
+          try { slider.setPointerCapture(e.pointerId); } catch (_) {}
+        }
+        setPosition(e.clientX);
+      });
 
       slider.addEventListener('pointermove', (e) => {
         setPosition(e.clientX);
