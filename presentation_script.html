@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vision 2040 — Student Presentation Playbook & Stage Script</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap');
+
+  @page {
+    size: A4;
+    margin: 12mm 14mm 12mm 14mm;
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: 'Outfit', sans-serif;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #64748B;
+    }
+    @bottom-left {
+      content: "DPS Mathura Road · Class 7A · Vision 2040 Presentation Script";
+      font-family: 'Outfit', sans-serif;
+      font-size: 7.5pt;
+      color: #94A3B8;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #0F172A;
+    background: #FFFFFF;
+    line-height: 1.45;
+    font-size: 8.8pt;
+  }
+
+  .page {
+    page-break-after: always;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Cover Card */
+  .cover-card {
+    background: linear-gradient(135deg, #064E3B 0%, #047857 55%, #065F46 100%);
+    color: #FFFFFF;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 16px rgba(6, 78, 59, 0.2);
+  }
+
+  .badge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2.5px 8px;
+    border-radius: 999px;
+    font-size: 7.2pt;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .tag-gold {
+    background: #FEF08A;
+    color: #713F12;
+  }
+
+  .tag-mint {
+    background: rgba(52, 211, 153, 0.2);
+    color: #A7F3D0;
+    border: 1px solid rgba(52, 211, 153, 0.4);
+  }
+
+  h1.doc-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18pt;
+    font-weight: 800;
+    line-height: 1.15;
+    color: #FFFFFF;
+    margin-bottom: 3px;
+  }
+
+  .doc-sub {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: 12pt;
+    color: #A7F3D0;
+    margin-bottom: 10px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 8pt;
+  }
+
+  .meta-col h5 {
+    color: #FEF08A;
+    font-size: 7pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 3px;
+  }
+
+  .meta-col p {
+    color: #F1F5F9;
+    line-height: 1.35;
+  }
+
+  .meta-col strong {
+    color: #FFFFFF;
+  }
+
+  /* Briefing Box */
+  .briefing-box {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-left: 4px solid #10B981;
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    font-size: 8.2pt;
+  }
+
+  .briefing-box h3 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 9.5pt;
+    font-weight: 800;
+    color: #065F46;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .briefing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .brief-item {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 6px 8px;
+  }
+
+  .brief-item h6 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 7.8pt;
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 2px;
+  }
+
+  .brief-item p {
+    font-size: 7.5pt;
+    color: #475569;
+    line-height: 1.3;
+  }
+
+  /* Roles Grid */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .role-card {
+    border-radius: 8px;
+    padding: 8px 10px;
+    border: 1px solid #E2E8F0;
+    background: #FFFFFF;
+  }
+
+  .role-card.manini-card {
+    border: 2px solid #10B981;
+    background: #F0FDF4;
+  }
+
+  .role-card h4 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 9pt;
+    font-weight: 800;
+    margin-bottom: 1px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .role-card.manini-card h4 {
+    color: #065F46;
+  }
+
+  .role-card .role-desc {
+    font-size: 7.5pt;
+    color: #64748B;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .role-card ul {
+    list-style: none;
+    font-size: 7.4pt;
+    line-height: 1.3;
+    color: #334155;
+  }
+
+  .role-card ul li::before {
+    content: "• ";
+    color: #10B981;
+    font-weight: bold;
+  }
+
+  /* Tips Card */
+  .tips-box {
+    background: #FEF9C3;
+    border: 1px solid #FDE047;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 7.8pt;
+    color: #713F12;
+  }
+
+  .tips-box h5 {
+    font-family: 'Outfit', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 800;
+    margin-bottom: 3px;
+    color: #854D0E;
+  }
+
+  .tips-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .tip-pill {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 5px;
+    padding: 4px 6px;
+    font-size: 7.2pt;
+    line-height: 1.25;
+  }
+
+  /* Scene Block */
+  .scene-block {
+    margin-bottom: 10px;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .scene-header {
+    background: #F1F5F9;
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #E2E8F0;
+  }
+
+  .scene-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 8.8pt;
+    font-weight: 800;
+    color: #0F172A;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .scene-meta {
+    font-size: 7.2pt;
+    color: #64748B;
+    font-weight: 700;
+  }
+
+  .stage-cue {
+    background: #FEF3C7;
+    border-left: 3px solid #F59E0B;
+    padding: 4px 8px;
+    font-size: 7.4pt;
+    color: #78350F;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .stage-cue strong {
+    color: #92400E;
+    text-transform: uppercase;
+    font-size: 6.8pt;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+  }
+
+  .dialogue-flow {
+    padding: 8px 10px;
+    background: #FFFFFF;
+  }
+
+  .speech-row {
+    display: grid;
+    grid-template-columns: 78px 1fr;
+    gap: 8px;
+    margin-bottom: 6px;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #F1F5F9;
+  }
+
+  .speech-row:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .speaker-badge {
+    text-align: right;
+  }
+
+  .s-pill {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 999px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 7.2pt;
+    font-weight: 800;
+  }
+
+  .s-manini {
+    background: #DCFCE7;
+    color: #14532D;
+    border: 1px solid #86EFAC;
+  }
+
+  .s-maham {
+    background: #E0E7FF;
+    color: #312E81;
+    border: 1px solid #A5B4FC;
+  }
+
+  .s-fatima {
+    background: #FCE7F3;
+    color: #831843;
+    border: 1px solid #F472B6;
+  }
+
+  .s-all {
+    background: #FEF08A;
+    color: #713F12;
+    border: 1px solid #FACC15;
+  }
+
+  .speaker-role {
+    display: block;
+    font-size: 6.5pt;
+    color: #64748B;
+    margin-top: 1px;
+    font-weight: 600;
+  }
+
+  .speech-content {
+    font-size: 8.2pt;
+    line-height: 1.38;
+  }
+
+  .speech-content .tip {
+    font-family: 'Caveat', cursive;
+    font-size: 9.5pt;
+    color: #059669;
+    font-weight: 700;
+    margin-right: 3px;
+  }
+
+  .speech-content .action-tag {
+    background: #F1F5F9;
+    color: #334155;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-size: 7pt;
+    font-weight: 700;
+    border: 1px solid #CBD5E1;
+  }
+
+  /* Q&A card */
+  .qa-card {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 6px;
+    padding: 6px 8px;
+    margin-bottom: 5px;
+  }
+
+  .qa-q {
+    font-weight: 700;
+    color: #0F172A;
+    font-size: 7.8pt;
+    margin-bottom: 2px;
+  }
+
+  .qa-a {
+    font-size: 7.5pt;
+    color: #334155;
+    line-height: 1.3;
+  }
+
+  .qa-a strong {
+    color: #065F46;
+  }
+</style>
+</head>
+<body>
+
+<!-- =========================================================================
+     PAGE 1: STRATEGIC BRIEFING & ROLES OVERVIEW
+     ========================================================================= -->
+<div class="page">
+  <div class="cover-card">
+    <div class="badge-row">
+      <span class="tag tag-gold">DPS Mathura Road · Class 7A</span>
+      <span class="tag tag-mint">Interactive Presentation Playbook</span>
+      <span class="tag tag-mint">Total Run Time: ~8 Minutes</span>
+    </div>
+    <h1 class="doc-title">Vision 2040: DPS Mathura Road as a Smart School</h1>
+    <div class="doc-sub">“Less Heavy Bags. More Heavy Brain Power.” — Complete 3-Speaker Script & Stage Playbook</div>
+    
+    <div class="meta-grid">
+      <div class="meta-col">
+        <h5>Student Presentation Team</h5>
+        <p>
+          👑 <strong>Manini Sharma</strong> · Group Leader, Anchor & Vision Lead<br>
+          🌟 <strong>Maham</strong> · Co-Presenter & Interactive Physics Demo Lead<br>
+          🌟 <strong>Fatima</strong> · Co-Presenter & Campus Transformations Lead
+        </p>
+      </div>
+      <div class="meta-col">
+        <h5>Honored Mentors & Teachers</h5>
+        <p>
+          💻 <strong>Poornima Ma’am</strong> (Computer Science)<br>
+          ✨ <strong>Richa Ma’am</strong> · <strong>Anuradha Ma’am</strong><br>
+          ✨ <strong>Deepti Ma’am</strong> · <strong>Usha Ma’am</strong> · <strong>Prableen Ma’am</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="briefing-box">
+    <h3>🎯 Why Do We Need This Website? What is the Purpose of This Project?</h3>
+    <p>
+      This project is not just a school assignment—it is a bold student vision linking our daily classroom life at DPS Mathura Road to India's upcoming national milestones.
+    </p>
+    <div class="briefing-grid">
+      <div class="brief-item">
+        <h6>1. Why a Live Website instead of PowerPoint?</h6>
+        <p>Static slides cannot demonstrate 2D physics gravity, real-time before/after wipe sliders, or interactive blueprints. A website lets teachers and classmates <strong>touch and experience</strong> 2040 right on screen.</p>
+      </div>
+      <div class="brief-item">
+        <h6>2. The 12kg Backpack Health Crisis</h6>
+        <p>Middle schoolers carry up to 40% of their body weight in textbooks every day, leading to spinal deformities. Our proposal replaces this with a 320g shatterproof AR Slate holding all curriculum.</p>
+      </div>
+      <div class="brief-item">
+        <h6>3. Delhi Smog & Clean-Air Bio-Dome</h6>
+        <p>Every winter, toxic Delhi smog forces schools to shut for weeks. Our solar-powered bio-dome maintains positive-pressure HEPA air (AQI &lt; 20), guaranteeing zero lost school days.</p>
+      </div>
+      <div class="brief-item">
+        <h6>4. Empowering Teachers with AI Automation</h6>
+        <p>AI doesn't replace teachers; it automates routine attendance, grading, and scheduling, giving our mentors 3 extra hours daily for 1-on-1 emotional connection and guidance.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="roles-grid">
+    <div class="role-card manini-card">
+      <h4>👑 Manini Sharma</h4>
+      <div class="role-desc">Group Leader & Primary Presenter</div>
+      <ul>
+        <li><strong>Leader Advantage:</strong> Delivers opening hook, sets the vision, commands spotlight and pacing.</li>
+        <li>Presents the 0.0kg Bagless AR Slate & AI Teacher Mentorship.</li>
+        <li>Leads heartfelt gratitude to Poornima Ma'am & mentors; commands Q&A.</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <h4>🌟 Maham</h4>
+      <div class="role-desc">Interactive Physics & Health Lead</div>
+      <ul>
+        <li>Triggers the falling 12.4kg backpack gravity chamber live on screen.</li>
+        <li>Controls the 2D physics sandbox (drags/flings the floating concept spheres).</li>
+        <li>Explains the Delhi Clean-Air Bio-Dome solution.</li>
+      </ul>
+    </div>
+
+    <div class="role-card">
+      <h4>🌟 Fatima</h4>
+      <div class="role-desc">Transformations & Lab Lead</div>
+      <ul>
+        <li>Drives the interactive before/after wipe sliders comparing real photos.</li>
+        <li>Highlights <strong>Poornima Ma’am’s Computer & AI Robotics Workcell</strong>.</li>
+        <li>Explains sports biomechanics with Usha Ma’am & science lab with Deepti Ma'am.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="tips-box">
+    <h5>🎤 3 Golden Rules for Stage Delivery (Smart 7th Grader Tone)</h5>
+    <div class="tips-list">
+      <div class="tip-pill"><strong>1. Eye Contact:</strong> Look at Principal Ma'am & teachers in the front row, not at your shoes or the wall!</div>
+      <div class="tip-pill"><strong>2. Smooth Handoffs:</strong> Manini passes smoothly to Maham and Fatima. Always smile when your teammate is speaking.</div>
+      <div class="tip-pill"><strong>3. Match Screen Actions:</strong> Speak exactly when the click or slider movement happens so the audience is hooked.</div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================================
+     PAGE 2: ACT 1 & 2 (THE HOOK, PURPOSE & THE 12KG CRISIS)
+     ========================================================================= -->
+<div class="page">
+  <!-- SCENE 1 -->
+  <div class="scene-block">
+    <div class="scene-header">
+      <span class="scene-title">🎬 Scene 1: The Dramatic Hook & Welcome</span>
+      <span class="scene-meta">Website: #hero (Top of Page) | Time: 0:00 – 1:15</span>
+    </div>
+    <div class="stage-cue">
+      <strong>Stage & Screen:</strong>
+      <span>Projector shows #hero. 3D paper plane glides smoothly. Manini stands center with clicker/mic. Maham on laptop trackpad. Fatima on right.</span>
+    </div>
+    <div class="dialogue-flow">
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+          <span class="speaker-role">Leader Spotlight</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Standing tall, warm smile, speaking with confident, energetic clarity]</span><br>
+          “Respected Principal Ma’am, our beloved teachers, and my dear friends—Good morning!<br>
+          Let me ask you all one simple question: How many of you felt your shoulder ache when you picked up your school bag this morning? <em>(Pause for audience smiles and nods)</em><br>
+          Today in 2024, middle schoolers carry between 8 to 12 kilograms of books every day! But imagine walking through the gates of DPS Mathura Road in the year 2040... carrying zero heavy books, breathing pure filtered air even during Delhi winters, and commanding real robotic arms in our computer lab!<br>
+          I am <strong>Manini Sharma</strong>, and alongside my brilliant teammates <strong>Maham</strong> and <strong>Fatima</strong> from <strong>Class 7A</strong>, we are thrilled to present: <strong>Vision 2040 — DPS Mathura Road as a Smart School!</strong>”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-maham">Maham</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Gestures to the screen]</span> “And instead of making a standard slideshow that puts people to sleep, we built a fully interactive website so you can actually <em>touch, test, and experience</em> what our school will feel like in 2040!”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-fatima">Fatima</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Points out teacher mentions on screen]</span> “Every single innovation here was inspired by our teachers—especially our computer teacher <strong>Poornima Ma’am</strong>, <strong>Richa Ma’am</strong>, <strong>Anuradha Ma’am</strong>, <strong>Deepti Ma’am</strong>, <strong>Usha Ma’am</strong>, and <strong>Prableen Ma’am</strong>!”
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 2 -->
+  <div class="scene-block">
+    <div class="scene-header">
+      <span class="scene-title">🎬 Scene 2: The Big Picture & National Alignment</span>
+      <span class="scene-meta">Website: Scroll to #why-2040 (Mission Manifesto) | Time: 1:15 – 2:15</span>
+    </div>
+    <div class="stage-cue">
+      <strong>Stage & Screen:</strong>
+      <span>Maham scrolls smoothly to #why-2040. 3D paper plane curves across the screen. Four pillar cards illuminate.</span>
+    </div>
+    <div class="dialogue-flow">
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+          <span class="speaker-role">Leader Spotlight</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Pacing clearly, visionary tone]</span><br>
+          “Why 2040? In 2040, India’s space program ISRO plans to land Indian astronauts on the Moon! And by 2047, India celebrates 100 years of independence with <em>Viksit Bharat</em>.<br>
+          DPS Mathura Road has always nurtured national leaders. But our classrooms must evolve for that future. School shouldn’t be about memorizing 300-page textbooks for paper exams. School should be about curiosity, solving climate challenges, and building real skills!”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-fatima">Fatima</span>
+        </div>
+        <div class="speech-content">
+          “That’s why our website establishes four pillars: <span class="action-tag">1</span> Smog-Free Bio-Domes, <span class="action-tag">2</span> 0.0kg Bagless AR Slates, <span class="action-tag">3</span> AI empowering our teachers, and <span class="action-tag">4</span> Live ISRO telemetry in science class.”
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 3 -->
+  <div class="scene-block">
+    <div class="scene-header">
+      <span class="scene-title">🎬 Scene 3: Live Interactive Demo — Feel the Weight of Today</span>
+      <span class="scene-meta">Website: #ph (Gravity Chamber) | Time: 2:15 – 3:30</span>
+    </div>
+    <div class="stage-cue">
+      <strong>Stage & Screen:</strong>
+      <span>Maham clicks "🎒 Feel The Weight of Today". Heavy books, metal bottles, and registers crash down in the Matter.js gravity chamber.</span>
+    </div>
+    <div class="dialogue-flow">
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+        </div>
+        <div class="speech-content">
+          “Now, let's look at our first live interactive simulation. Maham, show everyone what our spines feel every single morning!”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-maham">Maham</span>
+          <span class="speaker-role">Live Demo Lead</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Clicks/taps trackpad as items crash down]</span><br>
+          “Watch the screen! Look at that 12.4kg backpack crashing down! The heavy math guide, the science practical file, the steel bottle! Pediatric research shows 42% of middle schoolers suffer spine and shoulder pain because bags exceed 10% of their body weight.<br>
+          Why are we carrying 12 kilograms of dead weight when the entire world's knowledge fits in a microchip?”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+          <span class="speaker-role">Leader Spotlight</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Holds hands as if presenting a sleek tablet]</span><br>
+          “Our 2040 answer is the <strong>320-gram DPS Academic AR Slate</strong>! Inspired by Anuradha Ma’am’s bagless learning philosophy and Richa Ma’am’s adaptive testing ideas. All textbooks, interactive simulations, and homework modules live on one shatterproof slate. When you leave home, your bag is practically weightless!”
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================================
+     PAGE 3: ACT 3 & 4 (PHYSICS SANDBOX & CAMPUS TRANSFORMATIONS)
+     ========================================================================= -->
+<div class="page">
+  <!-- SCENE 4 -->
+  <div class="scene-block">
+    <div class="scene-header">
+      <span class="scene-title">🎬 Scene 4: 2D Physics Sandbox & The 8 Innovation Blueprints</span>
+      <span class="scene-meta">Website: #physics-sandbox | Time: 3:30 – 4:45</span>
+    </div>
+    <div class="stage-cue">
+      <strong>Stage & Screen:</strong>
+      <span>Maham grabs the bouncy floating concept spheres on screen, tossing and colliding them. Fatima points to the blueprint info drawer.</span>
+    </div>
+    <div class="dialogue-flow">
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-maham">Maham</span>
+          <span class="speaker-role">Live Demo Lead</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Grabs a sphere with cursor, flings it against the screen border]</span><br>
+          “In this section, we built a real-time 2D physics sandbox using Matter.js! You can fling these 8 concept spheres around the screen.<br>
+          Watch—I'm grabbing the green sphere for the <strong>Delhi AQI Bio-Dome</strong>. In winter, outdoor Delhi AQI climbs past 450. But inside our 2040 campus bio-dome, positive-pressure HEPA filters and solar canopies keep the air at AQI 18! Clear lungs, zero coughing, and zero cancelled school days!”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-fatima">Fatima</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Clicks the blue Robotics sphere on screen]</span><br>
+          “And when I click any sphere, like this blue one for <strong>AI Robotics</strong>, the full engineering blueprint pops up—detailing the exact problem, our solution, and its connection to India’s national science missions!”
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 5 -->
+  <div class="scene-block">
+    <div class="scene-header">
+      <span class="scene-title">🎬 Scene 5: Real DPS Photos vs. 2040 Wipe Sliders</span>
+      <span class="scene-meta">Website: #transformations (Facility 01 & 02) | Time: 4:45 – 6:15</span>
+    </div>
+    <div class="stage-cue">
+      <strong>Stage & Screen:</strong>
+      <span>Fatima operates the trackpad. Smoothly slides the before/after wipe divider on Facility 02 (Computer Lab) and Facility 03 (Science Lab).</span>
+    </div>
+    <div class="dialogue-flow">
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-fatima">Fatima</span>
+          <span class="speaker-role">Transformation Lead</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Slowly wipes the slider from left to right on screen]</span><br>
+          “This is our favorite feature—the <strong>Interactive Before-and-After Swipe Sliders</strong>!<br>
+          On the left is a real, authentic photograph of our school today. And when I drag this handle to the right—presto! You see our reimagined 2040 facility!<br>
+          Look at Facility 02: <strong>Computer & AI Robotics Lab</strong>, inspired by our computer teacher <strong>Poornima Ma’am</strong> and <strong>Richa Ma’am</strong>.<br>
+          Today, we work on desktop towers learning basic word processing and typing. But by 2040, under Poornima Ma’am’s guidance, students will write Python algorithms, simulate kinematics in CAD, and command real 6-axis articulated robot arms!”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+          <span class="speaker-role">Leader Spotlight</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Points proudly at the next facilities]</span><br>
+          “And look at Facility 03: The <strong>Frontier Science Lab</strong> with Deepti Ma’am and Prableen Ma’am! Instead of staring at 2D textbook drawings, students do fruit DNA extraction and inspect living cells through 8K quantum digital microscopes.<br>
+          Meanwhile in our sports arena, Usha Ma’am will use AI kinematic sensors to optimize athletic posture and prevent sports injuries!”
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- =========================================================================
+     PAGE 4: ACT 5, MENTORS TRIBUTE, FINALE & Q&A
+     ========================================================================= -->
+<div class="page">
+  <!-- SCENE 6 -->
+  <div class="scene-block">
+    <div class="scene-header">
+      <span class="scene-title">🎬 Scene 6: A Day in the Life of Class 7A in 2040</span>
+      <span class="scene-meta">Website: #timeline-section | Time: 6:15 – 7:15</span>
+    </div>
+    <div class="stage-cue">
+      <strong>Stage & Screen:</strong>
+      <span>Maham scrolls to timeline. The three presenters speak in crisp, synchronized relay style.</span>
+    </div>
+    <div class="dialogue-flow">
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+        </div>
+        <div class="speech-content">“<strong>07:30 AM:</strong> We board the quiet electric DPS shuttle carrying only our 320g slate. No heavy bags!”</div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-maham">Maham</span>
+        </div>
+        <div class="speech-content">“<strong>08:15 AM:</strong> Assembly under the Bio-Dome. Pristine air, AQI 18, clear breathing!”</div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-fatima">Fatima</span>
+        </div>
+        <div class="speech-content">“<strong>01:00 PM:</strong> AI Robotics & coding with our computer teacher Poornima Ma’am and Richa Ma’am!”</div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+        </div>
+        <div class="speech-content">“<strong>02:30 PM:</strong> Smart swimming and athletic recovery in the solar pool with Usha Ma’am!”</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE 7 -->
+  <div class="scene-block">
+    <div class="scene-header">
+      <span class="scene-title">🎬 Scene 7: Honoring Our Mentors & The Grand Finale</span>
+      <span class="scene-meta">Website: #closing-section (Signature & Mentors) | Time: 7:15 – 8:15</span>
+    </div>
+    <div class="stage-cue">
+      <strong>Stage & Screen:</strong>
+      <span>Scroll to bottom signature card showing Manini Sharma, Maham, and Fatima under Class 7A, with glowing teacher tribute chips.</span>
+    </div>
+    <div class="dialogue-flow">
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-manini">Manini</span>
+          <span class="speaker-role">Leader Spotlight</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[Heartfelt, sincere, smiling at teachers in the audience]</span><br>
+          “People often ask: <em>'If schools use AI, will teachers be replaced?'</em> Our answer is an absolute <strong>NO</strong>! A smart school never replaces teachers. In fact, AI frees our teachers from routine paperwork so they have more time to mentor, inspire, and care for us.<br>
+          We want to express our deepest gratitude to our computer teacher <strong>Poornima Ma’am</strong> for opening up our minds to coding and technology, and to <strong>Richa Ma’am</strong>, <strong>Anuradha Ma’am</strong>, <strong>Deepti Ma’am</strong>, <strong>Usha Ma’am</strong>, and <strong>Prableen Ma’am</strong>. You are the heart and soul of DPS Mathura Road!”
+        </div>
+      </div>
+      <div class="speech-row">
+        <div class="speaker-badge">
+          <span class="s-pill s-all">All Three</span>
+        </div>
+        <div class="speech-content">
+          <span class="tip">[In unison, stepping forward with bright smiles and a proud salute/bow]</span><br>
+          <strong>“The future isn't somewhere we go — it's something we build together!<br>
+          Thank you, and Jai Hind!”</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Q&A CHEAT SHEET -->
+  <div class="briefing-box" style="margin-top: 4px; padding: 6px 10px;">
+    <h3 style="font-size: 8.5pt; margin-bottom: 4px;">💡 Q&A Quick Reference for Manini, Maham & Fatima</h3>
+    <div class="qa-card">
+      <div class="qa-q">Q: "Isn't a smart campus too expensive for a school to build?"</div>
+      <div class="qa-a"><strong>Manini answers:</strong> "Not at all, Ma'am! Our plan uses bifacial solar hyper-canopies producing 140% of the school's electricity, drastically cutting Delhi power bills. Plus, eliminating physical textbooks saves lakhs every year."</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Q: "Won't students get distracted by games on their AR slates?"</div>
+      <div class="qa-a"><strong>Fatima answers:</strong> "Poornima Ma'am and Deepti Ma'am helped us address this: slates run on school-locked firmware with zero social media access and dedicated academic sandboxes."</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Q: "How does this website work offline?"</div>
+      <div class="qa-a"><strong>Maham answers:</strong> "We built a self-contained offline bundle where all images, styles, and physics scripts are embedded, so it runs smoothly on any school laptop without internet!"</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

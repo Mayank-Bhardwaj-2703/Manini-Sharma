@@ -5,8 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "npx -y serve .",
-    "start": "npx -y serve .",
-    "build": "python3 build.py && python3 build_offline.py"
+    "start": "npx -y serve ."
   },
   "author": "Manini Sharma, Maham, Fatima - Class 7A (DPS Mathura Road)",
   "license": "MIT"
