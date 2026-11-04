@@ -1,3 +1,7 @@
 work/
+*-master.png
 assets/concepts/*-master.png
+dist/assets/concepts/*-master.png
 .DS_Store
+*.pyc
+__pycache__/

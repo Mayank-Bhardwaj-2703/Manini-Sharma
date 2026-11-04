@@ -49,16 +49,18 @@ OPTION 3 — LOCAL DEV SERVER
 2. Open http://127.0.0.1:8040/ in your browser.
 
 =============================================================================
-KEY FEATURES
+KEY FEATURES & HIGHLIGHTS
 =============================================================================
-• Full-Screen 3D Paper Plane: Glides across the ENTIRE screen dynamically
-  with an aerodynamic contrail wake that tracks scroll position.
-• Swarm Reconstruction Engine: 7 named collaborative cursors (Manini, Richa Ma'am,
-  Anuradha Ma'am, Deepti Ma'am, Prableen Ma'am, Usha Ma'am, DPS AI Core)
-  dismantle the real school photographs and rebuild the 2040 vision in real-time.
-• 100% Scroll-Driven: Zero clicks required anywhere on the site.
-• Apple-Grade Aesthetic: Outfit typography, editorial Newsreader italics,
+• Full-Screen 3D Paper Plane & Graphite Pencil Doodle Trail: Glides across the
+  screen dynamically with an interactive cursor graphite pencil sketch effect.
+• Matter.js Gravity Chamber & 2D Physics Sandbox: Interactive physical concept
+  spheres that users can drag, toss, fling, and collide in real-time.
+• Interactive Before-and-After Swipe Sliders: Real-time visual comparison
+  between authentic present-day DPS school photos and 2040 futuristic concepts.
+• 100% Scroll & Touch Driven: Zero friction, ultra-responsive 60fps animations.
+• Apple-Grade Aesthetic: Outfit & Manrope typography, Instrument Serif italics,
   frosted glassmorphism, and authentic schoolgirl doodles (Caveat font).
-• Teacher Sparks: Direct attribution to Richa Ma’am, Anuradha Ma’am,
-  Deepti Ma’am, Usha Ma’am, and Prableen Ma’am.
-• Project Submission: Proudly credited to Manini Sharma (DPS Mathura Road).
+• Teacher Sparks & Mentors: Direct attribution to Computer Teacher Poornima Ma’am,
+  Richa Ma’am, Anuradha Ma’am, Deepti Ma’am, Usha Ma’am, and Prableen Ma’am.
+• Project Submission: Proudly presented by Manini Sharma, Maham, and Fatima
+  (Class 7A, DPS Mathura Road).

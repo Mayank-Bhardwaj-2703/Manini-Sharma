@@ -362,6 +362,15 @@ html.js-motion .reveal.is-visible {
 .author-name {
   font-size: 12px;
   color: var(--dps-green);
+  line-height: 1.2;
+}
+
+.author-class {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--dps-emerald);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .author-class {
@@ -2297,6 +2306,66 @@ html.js-motion .reveal.is-visible {
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
+.sig-team-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(52, 199, 89, 0.22);
+  border: 1px solid rgba(52, 199, 89, 0.45);
+  color: #FEF08A;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+
+.sig-team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.sig-member {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 16px;
+  padding: 10px 14px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.sig-member .sig-avatar {
+  font-size: 26px;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sig-member .sig-meta h4 {
+  font-size: 15px;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 2px;
+}
+
+.sig-member .sig-meta p {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #86EFAC;
+}
+
 .sig-header {
   display: flex;
   align-items: center;
@@ -2702,6 +2771,10 @@ html.js-motion .reveal.is-visible {
   /* Signature Card Mobile */
   .signature-card {
     padding: 22px 16px;
+  }
+  .sig-team-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
   .sig-header {
     flex-direction: row;

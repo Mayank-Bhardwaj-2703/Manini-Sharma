@@ -1,12 +1,13 @@
 {
   "name": "dps-mathura-road-vision-2040",
   "version": "1.0.0",
-  "description": "Vision 2040: DPS Mathura Road as a Smart School - A project by Manini Sharma",
+  "description": "Vision 2040: DPS Mathura Road as a Smart School - A student proposal by Manini Sharma, Maham & Fatima (Class 7A)",
   "private": true,
   "scripts": {
     "dev": "npx -y serve .",
-    "start": "npx -y serve ."
+    "start": "npx -y serve .",
+    "build": "python3 build.py && python3 build_offline.py"
   },
-  "author": "Manini Sharma (DPS Mathura Road)",
+  "author": "Manini Sharma, Maham, Fatima - Class 7A (DPS Mathura Road)",
   "license": "MIT"
 }

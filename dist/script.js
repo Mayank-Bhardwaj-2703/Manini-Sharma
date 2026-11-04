@@ -1,6 +1,6 @@
 /**
  * Vision 2040 — DPS Mathura Road (Master Hybrid Engine)
- * A Student Academic Proposal & Design System by Manini Sharma
+ * A Student Academic Proposal & Design System by Manini Sharma, Maham & Fatima (Class 7A)
  * 
  * Fusion Features:
  * 1. Matter.js Gravity Chamber (Feel the Weight of Today ➔ Gravity Inversion ➔ 3D Academic Slate)
@@ -350,7 +350,7 @@
           problem: 'Standard computer labs only teach basic word processing and typing.',
           solution: '6-axis articulated robot arms with ROS 2 and CAD digital twins.',
           why: 'Automated factories and surgical robots need students who master real spatial kinematics before graduating high school.',
-          teacher: 'Richa Ma’am',
+          teacher: 'Poornima Ma’am (Computer Science) & Richa Ma’am',
           align: 'India AI Mission & Atal Innovation'
         },
         'isro-downlink': {

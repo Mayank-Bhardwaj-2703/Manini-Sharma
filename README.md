@@ -1,99 +1,111 @@
 # Vision 2040: DPS Mathura Road as a Smart School
 
-> **A school project submission by Manini Sharma (DPS Mathura Road)**  
-> Reimagining Delhi Public School, Mathura Road in 2040 with bagless learning, AI-assisted teachers, robotic athletic coaching, genomics labs, and solar bio-domes.
+> **A Student Academic Proposal & Design Initiative**  
+> **Authors:** Manini Sharma (Lead), Maham, and Fatima · **Class 7A**  
+> **School:** Delhi Public School, Mathura Road, New Delhi  
+> **Digital Assistance:** Codlyn Softwares  
+
+Reimagining Delhi Public School, Mathura Road for the India of 2040: replacing 12kg backpacks with lightweight AR slates, establishing Delhi smog-free bio-domes, streaming live ISRO lunar telemetry, and empowering teachers with AI automation to focus 100% on mentorship and human creativity.
 
 ---
 
-## 🚀 Instant Vercel Deployment
+## 👩🏻‍🏫 Honored Teacher Mentors
 
-This project is **100% Vercel-Ready** out of the box with `vercel.json` and `package.json` configured.
+Our academic proposal is built upon real insights and daily inspiration from our wonderful teachers:
 
-### Option A: Deploy via GitHub (Recommended)
-1. Push this `vision-2040` folder to a new repository on GitHub:
+- 💻 **Poornima Ma’am (Computer Science)**: Evolution from static desktop computing to spatial kinematics, Python algorithmic thinking, ROS 2 robotics simulation, and ethical AI in computer labs.
+- ✨ **Richa Ma’am**: Adaptive tablet assessments, zero pen-and-paper exam anxiety, and AI diagnostic feedback.
+- ✨ **Anuradha Ma’am**: 100% Bagless school campus, multimodal AI tutors, and live orbital physics links with ISRO.
+- ✨ **Deepti Ma’am**: Hands-on fruit DNA extraction, CRISPR genomic modeling, and school-managed academic slates free of social media distractions.
+- ✨ **Usha Ma’am**: Kinematic sports analysis, automated ball-launching robotic towers, and Olympic-grade water filtration.
+- ✨ **Prableen Ma’am**: Quantum digital microscopy (8K resolution), transparent numberless AR safety goggles, and smart reagent handling.
+
+---
+
+## 👥 Student Project Team (Class 7A)
+
+- 👧🏻 **Manini Sharma** · Lead Student Researcher & Vision Architect (Class 7A)
+- 👧🏽 **Maham** · Co-Researcher & Creative Contributor (Class 7A)
+- 👧🏼 **Fatima** · Co-Researcher & Concepts Contributor (Class 7A)
+
+---
+
+## 🌟 Key Innovations & Interactive Features
+
+### 1. 2D Interactive Physics Sandbox & Matter.js Gravity Chamber
+- **"Feel the Weight of Today"**: Visualizes the 12kg backpack crisis versus the 320g shatterproof 2040 AR Slate.
+- **Concept Physics Sandbox**: 8 interactive bouncing concept spheres (Quantum Bio, AI Robotics, ISRO Moon Link, Solar Canopy, AI Co-Pilot, 0kg Slate, Smart Sports, Clean Air Bio-Dome) powered by Matter.js. Students and teachers can drag, fling, and collide the spheres in real-time.
+
+### 2. Interactive Before-and-After Swipe Sliders
+- Compare real present-day photographs of DPS Mathura Road (computer labs, classrooms, biology labs, athletics) against the 2040 concept visions with smooth touch/mouse drag handles.
+
+### 3. Full-Screen 3D Paper Plane & Graphite Pencil Doodle Canvas
+- An origami paper airplane crafted in 3D that glides dynamically across the screen as you scroll, leaving an aerodynamic wake.
+- Interactive graphite pencil canvas tracing hand-drawn star flecks and sketches following user cursor and touch gestures.
+
+### 4. Continuous Campus Activity Marquee Strip
+- High-resolution gallery showcasing athletics and school life at DPS Mathura Road (Cricket, Swimming, Tennis, Chess, Basketball, Volleyball, Dance, Gym, Shooting, Table Tennis).
+
+### 5. A Day in the Life of Class 7A in 2040
+- An hourly timeline walking through a typical student Tuesday: electric autonomous transit, smog-free assembly under the bio-dome, AR physics pods, aeroponic vertical farming lunches, and robotics workcells.
+
+### 6. Apple-Grade Visual Aesthetics & Schoolgirl Tone
+- Typography pairing **Outfit** and **Manrope** with editorial **Instrument Serif** and authentic hand-drawn notes using **Caveat**.
+- Clean glassmorphism, micro-borders, and DPS Emerald (`#1B5E3A`), Neon Mint (`#34C759`), and Warm Peach accents.
+
+---
+
+## 🚀 Deployment & Production Hosting
+
+This project is **100% Vercel & GitHub Ready** out of the box.
+
+### Live on Vercel:
+- Production configuration in `vercel.json` with immutable asset caching and clean URLs.
+- Static architecture with 60fps performance and instant edge distribution.
+
+### Running Locally:
+1. **Offline Single-File Bundle (No server needed)**:
+   Double-click `Vision 2040 - Offline.html` in Finder or File Explorer. All assets, images, and styles are embedded as base64 for instant offline viewing.
+2. **Local HTTP Server**:
    ```bash
-   cd "/Users/mayankbhardwaj/Desktop/Codlyn Softwares/manini/vision-2040"
-   git init
-   git add .
-   git commit -m "Vision 2040 DPS Mathura Road"
-   git branch -M main
-   git remote add origin https://github.com/<your-username>/<repo-name>.git
-   git push -u origin main
+   cd vision-2040
+   python3 -m http.server 8040 --bind 127.0.0.1
    ```
-2. Go to [vercel.com/new](https://vercel.com/new) and click **Import** next to your repository.
-3. Keep the default settings (Framework: *Other*).
-4. Click **Deploy**. Your site will be live worldwide in seconds!
+   Open [http://127.0.0.1:8040/](http://127.0.0.1:8040/) in Chrome or Safari.
 
-### Option B: Deploy via Vercel CLI
-```bash
-cd "/Users/mayankbhardwaj/Desktop/Codlyn Softwares/manini/vision-2040"
-npx vercel
+---
+
+## 📁 Repository Structure
+
+```text
+vision-2040/
+├── index.html                  # Semantic master website with full 2040 proposal
+├── styles.css                  # Apple-grade responsive design system
+├── script.js                   # Interactive logic, Matter.js sandbox & sliders
+├── matter.min.js               # Lightweight 2D physics engine
+├── package.json                # Project metadata & npm scripts
+├── vercel.json                 # Vercel CDN deployment routing & cache rules
+├── build.py                    # Static dist build compiler
+├── build_offline.py            # Single-file offline HTML compiler
+├── Vision 2040 - Offline.html  # Standalone single-file offline bundle
+├── HOW TO RUN.txt              # Quick guide for students and teachers
+├── RESEARCH.md                 # Background research and alignment with NEP 2020
+└── assets/
+    ├── concepts/               # 2040 futuristic campus concept renders (WebP)
+    ├── originals/              # Present-day school campus photos (WebP)
+    ├── photos/                 # Activity and sports photographs (JPEG)
+    ├── video/                  # Optimized campus background video loops
+    └── favicon.svg             # Vector site crest favicon
 ```
-Follow the interactive prompts (press Enter to accept defaults) and your site is instantly published.
 
 ---
 
-## 💻 Running Locally
-
-### Easiest (No server required):
-Double-click **`Vision 2040 - Offline.html`** in Finder. It is a completely self-contained, embedded snapshot with all images, styles, and scripts. Runs offline with zero dependencies!
-
-### With Local Development Server:
-```bash
-cd "/Users/mayankbhardwaj/Desktop/Codlyn Softwares/manini/vision-2040"
-python3 -m http.server 8040 --bind 127.0.0.1
-```
-Open **[http://127.0.0.1:8040/](http://127.0.0.1:8040/)** in Chrome or Safari.
+## 🇮🇳 Alignment with National Missions
+- **Viksit Bharat 2047**: Preparing school graduates for high-tech bio-economies and advanced robotics.
+- **ISRO 2040 Human Moon Landing**: Inspiring space sciences with direct telemetry links.
+- **National Education Policy (NEP 2020)**: Bagless school days, experiential learning, and multi-disciplinary skill development.
+- **National Clean Air Programme (NCAP)**: Healthy educational environments ensuring zero missed school days during Delhi winter smog.
 
 ---
 
-## 🌟 Key Innovations & Features
-
-### 1. Full-Screen 3D Paper Plane Companion
-- An origami paper airplane crafted in 3D with faceted shading and DPS green/gold livery.
-- Glides dynamically across the **entire viewport** (from left to right in smooth Catmull-Rom spline curves) as you scroll down and back up.
-- Leaves an aerodynamic wake / glowing contrail that follows its flight path.
-- The speech bubble tag stays perpetually upright and readable throughout all banking angles!
-
-### 2. Collaborative Multiplayer Swarm Reconstruction (`swarm.js`)
-- Inspired by Dhvanil Patel's Swarm Cursors & Joel Califa's Swarm Site.
-- **7 Named Collaborators**:
-  - 🎨 **Manini Sharma** (Vision Lead)
-  - 👩🏻‍🏫 **Richa Ma’am** (Adaptive Tab Testing)
-  - 🎒 **Anuradha Ma’am** (Bagless Learning & AI)
-  - 🧬 **Deepti Ma’am** (DNA & Genomics)
-  - 🏃🏻‍♀️ **Usha Ma’am** (AI Athletics Coach)
-  - 🔬 **Prableen Ma’am** (Quantum Microscopy & AR)
-  - ⚡ **DPS AI Core** (Campus Neural Grid)
-- **100% Scroll-Driven Scrubbing**: Cursors draw live bounding box dimensions (`W: 1920 H: 1080`), snap guides, dismantle real 2024 school photos into 3D floating tiles with magnetic laser tethers, and rebuild the 2040 futuristic concept images. Reverses naturally when scrolling up!
-
-### 3. Apple-Grade Aesthetics & Gen-Z Schoolgirl Tone
-- Ultra-crisp modern sans typography (`Outfit`), editorial luxury italics (`Newsreader`), and authentic schoolgirl doodles (`Caveat`).
-- Frosted glassmorphism, micro-borders, and vibrant DPS Emerald (`#1B5E3A`), Neon Mint (`#34C759`), and Warm Peach accents.
-- Catchy Gen-Z hooks: *"Less heavy bags. More heavy brain power."*, *"Why is my schoolbag 12kg in 2024?!"*, *"Strawberry DNA is actually wild."*
-
-### 4. Direct Teacher Ideas & Concepts
-- **Richa Ma’am**: No pen & paper tests — adaptive evaluations on tablets, hybrid learning when unwell.
-- **Anuradha Ma’am**: 100% bagless campus, zero heavy paper notebooks, multimodal AI tutors.
-- **Deepti Ma’am**: Hands-on fruit DNA extraction in bio, school-managed locked academic tabs with zero social media doom-scrolling.
-- **Usha Ma’am**: Automated ball-feeding robotic towers and AI biomechanics tracking cameras.
-- **Prableen Ma’am**: 8K quantum digital microscopes, transparent numberless AR safety goggles, and robotic reagent handling hoods.
-
-### 5. Zero Clicks Needed
-The entire site is 100% scrollable. No modals, no toggles, no clicking. Just scroll to experience the future.
-
----
-
-## 📁 File Structure
-
-- `index.html` — Main website with semantic structure and Gen-Z hooks
-- `styles.css` — Complete Apple design system, 3D paper plane, tablet, and responsive grid
-- `script.js` — Catmull-Rom flight physics, scroll tracking, and chapter navigation
-- `swarm.js` — Multiplayer cursor swarm and 3D tile reconstruction engine
-- `vercel.json` — Vercel static routing and high-performance caching config
-- `package.json` — Metadata and npm dev/start commands
-- `build.py` — Builds the `dist/` directory
-- `build_offline.py` — Compiles the single-file `Vision 2040 - Offline.html`
-- `assets/originals/` — Authentic present-day school photographs
-- `assets/concepts/` — 2040 futuristic concept images
-- `HOW TO RUN.txt` — Quick guide for Manini and her teachers
+*(c) 2026 Delhi Public School, Mathura Road · Academic Project Submission by Manini Sharma, Maham, and Fatima (Class 7A)*
