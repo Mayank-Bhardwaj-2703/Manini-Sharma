@@ -350,7 +350,7 @@
           problem: 'Standard computer labs only teach basic word processing and typing.',
           solution: '6-axis articulated robot arms with ROS 2 and CAD digital twins.',
           why: 'Automated factories and surgical robots need students who master real spatial kinematics before graduating high school.',
-          teacher: 'Poornima Ma’am (Computer Science) & Richa Ma’am',
+          teacher: 'Poornima Ma’am (Computer Science)',
           align: 'India AI Mission & Atal Innovation'
         },
         'isro-downlink': {
@@ -361,7 +361,7 @@
           problem: 'Space science is treated as a chapter to memorize for a paper exam.',
           solution: 'Direct orbital telemetry link to ISRO Bharatiya Antariksh Station.',
           why: 'By 2040, India will have manned moon bases. Students analyze real Doppler radio data in physics class.',
-          teacher: 'Anuradha Ma’am',
+          teacher: 'Science & Astronomy Mentorship',
           align: 'ISRO 2040 Manned Lunar Landing'
         },
         'solar-canopy': {
@@ -383,7 +383,7 @@
           problem: 'One teacher for 40 students cannot give personal pacing to everyone.',
           solution: 'Neural adaptive tutor explaining concepts in 5 different ways.',
           why: 'No child feels left behind or embarrassed; teachers focus 100% on emotional mentorship and creativity.',
-          teacher: 'Richa Ma’am & Anuradha Ma’am',
+          teacher: 'Faculty Mentorship & Counseling',
           align: 'UN SDG 4: Quality Education'
         },
         'bagless-slate': {
@@ -394,7 +394,7 @@
           problem: '12kg backpacks cause spinal deformities in 42% of middle schoolers.',
           solution: '320g shatterproof AR Slate holding all textbooks, notebooks, and labs.',
           why: 'Physical health is cognitive health. School should enlighten young minds, not crush their spines.',
-          teacher: 'Anuradha Ma’am',
+          teacher: 'Student Well-being Initiative',
           align: 'National Health Policy & Ergonomics'
         },
         'smart-sports': {

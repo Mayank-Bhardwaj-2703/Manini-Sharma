@@ -24,8 +24,7 @@ School solar and water upgrades would need building and site assessment. Delhi a
 
 The user supplied Manini's student conversation notes. Selected ideas have been credited using the given first names; no direct quotations, endorsements or official commitments were invented.
 
-- Richa Ma'am: tablet tests and home learning.
-- Anuradha Ma'am: digital notebooks, bagless learning and more AI.
+- Poornima Ma'am: computer science, Python programming, robotics workcells and AI ethics.
 - Deepti Ma'am: academic-only school-provided tablets and DNA learning.
 - Usha Ma'am: robots in physical education, adapted into assisting coaches.
 - Prableen Ma'am: enhanced microscopes, complex-task automation, enhanced slides and transparent protective glasses.

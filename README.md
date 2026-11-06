@@ -14,8 +14,6 @@ Reimagining Delhi Public School, Mathura Road for the India of 2040: replacing 1
 Our academic proposal is built upon real insights and daily inspiration from our wonderful teachers:
 
 - 💻 **Poornima Ma’am (Computer Science)**: Evolution from static desktop computing to spatial kinematics, Python algorithmic thinking, ROS 2 robotics simulation, and ethical AI in computer labs.
-- ✨ **Richa Ma’am**: Adaptive tablet assessments, zero pen-and-paper exam anxiety, and AI diagnostic feedback.
-- ✨ **Anuradha Ma’am**: 100% Bagless school campus, multimodal AI tutors, and live orbital physics links with ISRO.
 - ✨ **Deepti Ma’am**: Hands-on fruit DNA extraction, CRISPR genomic modeling, and school-managed academic slates free of social media distractions.
 - ✨ **Usha Ma’am**: Kinematic sports analysis, automated ball-launching robotic towers, and Olympic-grade water filtration.
 - ✨ **Prableen Ma’am**: Quantum digital microscopy (8K resolution), transparent numberless AR safety goggles, and smart reagent handling.
